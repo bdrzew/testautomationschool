@@ -1,7 +1,10 @@
 package selenium9;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,11 +30,21 @@ public class AlertTest {
     @Before
     public void testSetup() {
         driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html");
+        driver.manage().window().fullscreen();
     }
 
     @AfterClass
     public static void classTeardown() {
         driver.quit();
+    }
+    @Test
+    public void shouldReturnFields() throws InterruptedException {
+        WebElement click1Button = driver.findElement(By.xpath("//button[@onclick='myConfirmFunction()']"));
+
+        click1Button.click();
+        Thread.sleep(4000);
+        driver.switchTo().alert().accept();
+        Thread.sleep(4000);
     }
 
     @Test
