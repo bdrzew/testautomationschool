@@ -11,8 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -48,4 +46,20 @@ public class AlertTest {
         driver.switchTo().alert().accept();
         Thread.sleep(4000);
     }
+
+    @Test
+    public void clickPromptBoxText(){
+        WebElement el =  driver.findElement(By.xpath("//button[contains(text(),'Click for Prompt Box')]"));
+        el.click();
+        assertEquals("Enter name",driver.switchTo().alert().getText() );
+
+        driver.switchTo().alert().accept();
+
+            try {
+                Thread.sleep(5555);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+    }
+
 }
