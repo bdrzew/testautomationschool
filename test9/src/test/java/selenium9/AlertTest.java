@@ -7,8 +7,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -22,13 +25,27 @@ public class AlertTest {
 
     @BeforeClass
     public static void classSetup() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
     }
 
     @Before
     public void testSetup() {
+        driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html");
+        driver.manage().window().fullscreen();
     }
 
     @AfterClass
     public static void classTeardown() {
+        driver.quit();
+    }
+    @Test
+    public void shouldReturnFields() throws InterruptedException {
+        WebElement click1Button = driver.findElement(By.xpath("//button[@onclick='myConfirmFunction()']"));
+
+        click1Button.click();
+        Thread.sleep(4000);
+        driver.switchTo().alert().accept();
+        Thread.sleep(4000);
     }
 }
