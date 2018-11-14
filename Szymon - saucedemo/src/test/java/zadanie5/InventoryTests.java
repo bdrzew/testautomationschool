@@ -77,10 +77,8 @@ public class InventoryTests {
         driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Bolt T-Shirt')]/../../following-sibling::div//button")).click();
         goToShoppingCartContainerStep1();
         goToCartCheckoutStep2();
-        fillYourInformationStep3();        sleepToSee(3);
-
+        fillYourInformationStep3();
         goToOverviewStep4();
-        sleepToSee(3);
         assertEquals("Total value is not correct for three items", "Total: $60.45", driver.findElement(By.xpath("//div[@class='summary_total_label']")).getText());
     }
 
