@@ -1,13 +1,14 @@
 package zadanie5;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.assertj.core.api.Assertions;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.Assert.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
 
 
 import org.junit.Before;
@@ -26,15 +27,17 @@ public class InventoryTests {
     public static void classSetup (){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-    }
-    @Before
-    public void testSetup(){
         driver.get("https://www.saucedemo.com");
         login();
     }
+    @Before
+    public void testSetup(){
+        driver.get("https://www.saucedemo.com/inventory.html");
+    }
     @After
     public void testTeardown (){
-        logout();
+        openHamburgerMenu();
+        resetAppState();
             }
     @AfterClass
     public static void classTeardown(){
@@ -42,30 +45,44 @@ public class InventoryTests {
     }
 
     @Test
-    public void shouldAnswerWithTrue()
+    public void buyOneItemVerifyPriceTest()
     {
-        driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Backpack')]/../..//button")).click();
-        driver.findElement(By.id("shopping_cart_container")).click();
-        assertEquals("Sauce Labs Backpack", driver.findElement(By.xpath("//div[@class='inventory_item_name']")).getText());
-        driver.findElement(By.xpath("//a[@class='cart_checkout_link']")).click();
-        driver.findElement(By.xpath("//input[@placeholder='First Name']")).sendKeys("Jan");
-        driver.findElement(By.xpath("//input[@placeholder='Last Name']")).sendKeys("Nowak");
-        driver.findElement(By.xpath("//input[@placeholder='Zip/Postal Code']")).sendKeys("34-400");
-        driver.findElement(By.xpath("//input[@value='CONTINUE']")).click();
+        driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Backpack')]/../../following-sibling::div//button")).click();
+        goToShoppingCartContainerStep1();
+        assertEquals("backpack is not in container", "Sauce Labs Backpack", driver.findElement(By.xpath("//div[@class='inventory_item_name']")).getText());
 
-        assertThat(driver.findElement(By.xpath("//div[@class='summary_total_label']")).getText()).contains("32.39");
-        //TODO: wiecej asserji albo wiecej testow
+        goToCartCheckoutStep2();
+        fillYourInformationStep3();
+        goToOverviewStep4();
+        assertEquals("Total value is not correct for one backpack", "Total: $32.39", driver.findElement(By.xpath("//div[@class='summary_total_label']")).getText());
 
-        sleepToSee(3);
-        assertTrue( true );
+        goToCheckoutCompleteStep5();
+        assertEquals("order is not complete or thank you text changed", "THANK YOU FOR YOUR ORDER", driver.findElement(By.xpath("//h2[@class='complete-header']")).getText());
     }
 
-    //test na sprawdzenie ilości rzeczy w koszyku numerkiem przy koszyku i później w koszyku druga asercja
+    @Test
+    public void buyFewAndVerifyContainerTest(){
+        driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Backpack')]/../../following-sibling::div//button")).click();
+        driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Bike Light')]/../../following-sibling::div//button")).click();
+        driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Bolt T-Shirt')]/../../following-sibling::div//button")).click();
+        goToShoppingCartContainerStep1();
+        String cartList = driver.findElement(By.xpath("//div[@class='cart_list']")).getText();
+        assertThat(cartList).contains("Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt");
+    }
 
-    //test na sprawdzenie sumy kasy w koszyku przy kilku produktach
+    @Test
+    public void buyFewAndVerifySumTest(){
+        driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Backpack')]/../../following-sibling::div//button")).click();
+        driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Bike Light')]/../../following-sibling::div//button")).click();
+        driver.findElement(By.xpath("//div[contains(text(),'Sauce Labs Bolt T-Shirt')]/../../following-sibling::div//button")).click();
+        goToShoppingCartContainerStep1();
+        goToCartCheckoutStep2();
+        fillYourInformationStep3();        sleepToSee(3);
 
-    //test na dodanie do koszyka kilku rzeczy i usunięcie dwóch
-
+        goToOverviewStep4();
+        sleepToSee(3);
+        assertEquals("Total value is not correct for three items", "Total: $60.45", driver.findElement(By.xpath("//div[@class='summary_total_label']")).getText());
+    }
 
 
 
@@ -77,8 +94,7 @@ public class InventoryTests {
             e.printStackTrace();
         }
     }
-
-    public void login (){
+    private static void login(){
         WebElement usernameField = driver.findElement(By.xpath("//input[@type='text']"));
         usernameField.sendKeys("standard_user");
 
@@ -88,15 +104,38 @@ public class InventoryTests {
         WebElement loginButton = driver.findElement(By.xpath("//input[@type='submit']"));
         loginButton.click();
     }
-
-    public void openHamburgerMenu() {
+    private static void openHamburgerMenu() {
         driver.findElement(By.xpath("//button[contains(text(),'Open Menu')]")).click();
     }
-    public void logout () {
+    private static void logout() {
         openHamburgerMenu();
-        new WebDriverWait(driver,10 )
-//                .until((ExpectedConditions.elementToBeClickable(By.id("logout_sidebar_link")))).click();
-                .until((ExpectedConditions.visibilityOfElementLocated(By.id("logout_sidebar_link")))).click();
+        WebElement logoutSidebarLink = driver.findElement(By.id("logout_sidebar_link"));
+        new WebDriverWait(driver, 5)
+                .until(p -> logoutSidebarLink.getLocation().x > 0);
+        logoutSidebarLink.click();
+    }
+    private void goToShoppingCartContainerStep1 (){
+        driver.findElement(By.id("shopping_cart_container")).click();
+    }
+    private void goToCartCheckoutStep2 (){
+        driver.findElement(By.xpath("//a[@class='cart_checkout_link']")).click();
+    }
+    private void fillYourInformationStep3 (){
+        driver.findElement(By.xpath("//input[@placeholder='First Name']")).sendKeys("Jan");
+        driver.findElement(By.xpath("//input[@placeholder='Last Name']")).sendKeys("Nowak");
+        driver.findElement(By.xpath("//input[@placeholder='Zip/Postal Code']")).sendKeys("34-400");
+    }
+    private void goToOverviewStep4 () {
+        driver.findElement(By.xpath("//input[@value='CONTINUE']")).click();
+    }
+    private void goToCheckoutCompleteStep5 (){
+        driver.findElement(By.xpath("//a[@class='cart_checkout_link']")).click();
+    }
+    private void resetAppState (){
+        WebElement resetAppStateLink = driver.findElement(By.xpath("//a[@id='reset_sidebar_link']"));
+        new WebDriverWait(driver, 5)
+                .until(p -> resetAppStateLink.getLocation().x > 0);
+        resetAppStateLink.click();
     }
 }
 
