@@ -3,10 +3,10 @@ package zajecia6.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class FirstFormPage {
+public class MyFirstFormPage {
     private WebDriver driver;
 
-    public FirstFormPage(WebDriver driver) {
+    public MyFirstFormPage(WebDriver driver) {
 
         this.driver = driver;
     }

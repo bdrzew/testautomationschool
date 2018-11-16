@@ -8,7 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import zajecia6.page.FirstFormPage;
+import zajecia6.page.MyFirstFormPage;
 
 /**
  * This class is designed to test 2 forms available at
@@ -17,13 +17,13 @@ import zajecia6.page.FirstFormPage;
 public class FormTest {
 
     private WebDriver driver;
-    private FirstFormPage firstFormPage;
+    private MyFirstFormPage firstFormPage;
 
     @BeforeClass
     public void classSetup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        firstFormPage = new FirstFormPage(driver);
+        firstFormPage = new MyFirstFormPage(driver);
     }
 
     @BeforeMethod
