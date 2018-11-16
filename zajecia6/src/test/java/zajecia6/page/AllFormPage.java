@@ -3,10 +3,10 @@ package zajecia6.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MyFirstFormPage {
+public class AllFormPage {
     private WebDriver driver;
 
-    public MyFirstFormPage(WebDriver driver) {
+    public AllFormPage(WebDriver driver) {
 
         this.driver = driver;
     }
@@ -15,7 +15,7 @@ public class MyFirstFormPage {
         driver.get(url);
     }
 
-    public void fillMessageField(String text) {
+    public void fillFirstFormMessageField(String text) {
         driver.findElement(By.id("user-message")).sendKeys(text);
     }
 
@@ -39,7 +39,19 @@ public class MyFirstFormPage {
         return driver.findElement(By.id("displayvalue")).getText();
     }
 
+    public void enterValueA(int firstNumber) {
+        driver.findElement(By.id("sum1")).sendKeys(String.valueOf(firstNumber));
+    }
+
+    public void enterValueB(int secondNumber) {
+        driver.findElement(By.id("sum2")).sendKeys(String.valueOf(secondNumber));
+    }
+
     public void clickGetTotalButton() {
         driver.findElement(By.xpath("//button[contains(text(),'Get Total')]")).click();
+    }
+
+    public int getTotalValue() {
+        return Integer.valueOf(driver.findElement(By.id("displayvalue")).getText());
     }
 }
