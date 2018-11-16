@@ -48,12 +48,20 @@ public class FormTest {
     public void fillSecondFormTest() {
         int firstNumber = 2;
         int secondNumber = 5;
-        int suma = firstNumber+secondNumber;
+        int sum = firstNumber+secondNumber;
         allFormPage.enterValueA(firstNumber);
         allFormPage.enterValueB(secondNumber);
         allFormPage.clickGetTotalButton();
 
-        assertEquals(allFormPage.getTotalValue(), suma);
+        assertEquals(allFormPage.getTotalValue(), sum);
     }
 
+
+    @Test
+    public void fillTwoInputFieldsTest() {
+        allFormPage.fillAField("dupa");
+        allFormPage.fillBField("123");
+        allFormPage.clickGetTotalButton();
+        assertEquals(allFormPage.getTotalDisplayed(), "NaN");
+    }
 }

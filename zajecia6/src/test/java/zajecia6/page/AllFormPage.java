@@ -11,8 +11,6 @@ public class AllFormPage {
         this.driver = driver;
     }
 
-
-
     public void openPage(String url) {
         driver.get(url);
     }
@@ -29,6 +27,18 @@ public class AllFormPage {
         return driver.findElement(By.id("display")).getText();
     }
 
+    public void fillAField(String text) {
+        driver.findElement(By.id("sum1")).sendKeys(text);
+    }
+
+    public void fillBField(String text) {
+        driver.findElement(By.id("sum2")).sendKeys(text);
+    }
+
+    public String getTotalDisplayed() {
+        return driver.findElement(By.id("displayvalue")).getText();
+    }
+
     public void enterValueA(int firstNumber) {
         driver.findElement(By.id("sum1")).sendKeys(String.valueOf(firstNumber));
     }
@@ -42,6 +52,6 @@ public class AllFormPage {
     }
 
     public int getTotalValue() {
-      return Integer.valueOf(driver.findElement(By.id("displayvalue")).getText());
+        return Integer.valueOf(driver.findElement(By.id("displayvalue")).getText());
     }
 }
