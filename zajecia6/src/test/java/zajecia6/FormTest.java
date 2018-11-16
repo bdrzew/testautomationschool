@@ -42,4 +42,12 @@ public class FormTest {
         firstFormPage.clickShowMessageButton();
         Assert.assertEquals(firstFormPage.getMessageDisplayed(), "Some message");
     }
+
+    @Test
+    public void fillTwoInputFieldsTest() {
+        firstFormPage.fillAField("dupa");
+        firstFormPage.fillBField("123");
+        firstFormPage.clickGetTotalButton();
+        Assert.assertEquals(firstFormPage.getTotalDisplayed(), "NaN");
+    }
 }
