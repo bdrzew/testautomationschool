@@ -26,4 +26,20 @@ public class FirstFormPage {
     public String getMessageDisplayed() {
         return driver.findElement(By.id("display")).getText();
     }
+
+    public void fillAField(String text) {
+        driver.findElement(By.id("sum1")).sendKeys(text);
+    }
+
+    public void fillBField(String text) {
+        driver.findElement(By.id("sum2")).sendKeys(text);
+    }
+
+    public String getTotalDisplayed() {
+        return driver.findElement(By.id("displayvalue")).getText();
+    }
+
+    public void clickGetTotalButton() {
+        driver.findElement(By.xpath("//button[contains(text(),'Get Total')]")).click();
+    }
 }
