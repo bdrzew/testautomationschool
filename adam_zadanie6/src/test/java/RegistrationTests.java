@@ -27,7 +27,7 @@ public class RegistrationTests {
 
     @BeforeMethod
     public void before() {
-        startPage.openPage("http://parabank.parasoft.com");
+        //startPage.openPage("http://parabank.parasoft.com");
         startPage.openStartPage();
         registrationPage.openRegistrationPage();
         startPage.maximizePage();
