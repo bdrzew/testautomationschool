@@ -12,7 +12,7 @@ public class RegisterPage  extends  LeftNavigationMenu{
     }
 
     public void enterFirstName(String firstName) {
-        driver.findElement(By.id("customer.firstName")).sendKeys(firstName);
+        driver.findElement(By.id("customer.firstName")).sendKeys(firstName); //czego tu brakuje żeby nei było nullpointera, jak, gdzie inicjalizować
     }
 
     public void enterLastName(String lastName) {
