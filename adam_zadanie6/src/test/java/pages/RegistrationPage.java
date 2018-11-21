@@ -3,10 +3,17 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class RegistrationPage extends StartPage{
+public class RegistrationPage{
+    private WebDriver driver;
+
     public RegistrationPage(WebDriver driver) {
-        super(driver);
+
+        this.driver = driver;
     }
+    public void openRegistrationPage() {
+        driver.get("http://parabank.parasoft.com/parabank/register.htm");
+    }
+
     public void setFirstName(String name) {
         driver.findElement(By.id("customer.firstName")).sendKeys(name);
     }
@@ -51,5 +58,11 @@ public class RegistrationPage extends StartPage{
 
     public void clickRegister() {
         driver.findElement(By.xpath("//input[@value='Register']")).click();
+    }
+    public String getFirstNameErrorDisplayed() {
+        return driver.findElement(By.id("customer.firstName.errors")).getText();
+    }
+    public String getPassDidNotMatchErrorDisplayed() {
+        return driver.findElement(By.id("repeatedPassword.errors")).getText();
     }
 }
