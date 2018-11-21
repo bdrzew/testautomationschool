@@ -1,15 +1,10 @@
 package zadanie6;
 
-import org.junit.After;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.assertj.core.api.Assertions;
 import org.testng.annotations.*;
 import zadanie6.page.RegisterPage;
-
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -34,8 +29,11 @@ public class RegisterTest {
     }
 
     @AfterMethod
-    public void testTeardown(){
-        registerPage.clickLogout();
+    public void testTeardown() {
+        try {
+            registerPage.clickLogout();
+        } catch (Exception e) {
+        }
     }
 
     @AfterClass
@@ -54,8 +52,8 @@ public class RegisterTest {
         registerPage.enterPhoneNumber("777888999");
         registerPage.enterSsn("1234567890");
         String usernameIncoming = registerPage.getRandomUsername(5);
-        registerPage.enterUsername(usernameIncoming);
-        registerPage.enterPassword("1");
+        registerPage.enterUsernameToRegisterForm(usernameIncoming);
+        registerPage.enterPasswordToRegisterForm("1");
         registerPage.confirmPasswordField("1");
         registerPage.clickRegisterButton();
 
@@ -66,9 +64,13 @@ public class RegisterTest {
     }
 
     @Test
-    public void successfulLoginTest() {
-        registerPage.createRegularUser(); //in progress
-        welcomePage.enterUsername();
-        welcomePage.enterPassword();
+    public void accountCreatedSuccessfullyByMethodTest(){
+        registerPage.createRegularUser();
+        assertEquals("Welcome " + registerPage.getUsername()
+                        + "\nYour account was created successfully. You are now logged in.",
+                registerPage.getConfirmMessageText());
+
     }
+
+
 }

@@ -4,15 +4,11 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class RegisterPage {
+public class RegisterPage  extends  LeftNavigationMenu{
     private WebDriver driver;
 
     public RegisterPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public void openPage(String url) {
-        driver.get(url);
+        super(driver);
     }
 
     public void enterFirstName(String firstName) {
@@ -49,15 +45,14 @@ public class RegisterPage {
 
     public String getRandomUsername(int numberOfChars) {
         String randomString = RandomStringUtils.randomAlphanumeric(numberOfChars);
-        String usernameIncoming = "user_" + randomString;
-        return usernameIncoming;
+        return "user_" + randomString;
     }
 
-    public void enterUsername(String usernameIncoming) {
+    public void enterUsernameToRegisterForm(String usernameIncoming) {
         driver.findElement(By.id("customer.username")).sendKeys(usernameIncoming);
     }
 
-    public void enterPassword(String password) {
+    public void enterPasswordToRegisterForm(String password) {
         driver.findElement(By.id("customer.password")).sendKeys(password);
     }
 
@@ -65,39 +60,59 @@ public class RegisterPage {
         driver.findElement(By.id("repeatedPassword")).sendKeys(password);
     }
 
-    public void clickRegisterButton() {
-        driver.findElement(By.xpath(
-                "//input[@value='Register']")).click();
-    }
-
     public String getConfirmMessageText() {
         return driver.findElement(By.xpath("//div[@id='rightPanel']")).getText();
     }
 
-    public void createRegularUser() {
-        String password = "1";
 
-        enterFirstName("Jan");
-        enterLastName("Nowak");
+
+
+    private String password;
+    private String username;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername() {
+        username = getRandomUsername(5);
+    }
+
+    public void createRegularUser() {
+
+        enterFirstName(getFirstName());
+        enterLastName(getLastName());
         enterAddress("Sesame Street");
         enterCity("Kraków");
         enterState("Best State");
         enterZipCode("31-543");
         enterPhoneNumber("777888999");
         enterSsn("1234567890");
-        String usernameIncoming = getRandomUsername(5);
-        enterUsername(usernameIncoming);
-        enterPassword(password);
-        confirmPasswordField(password);
-        clickRegisterButton();
 
-        CreatedUsers.setCreatedUsername(usernameIncoming);                 //jak to zrobić
-        CreatedUsers.setCreatedUsernamePassword(password);
+        setPassword("1");
+        setUsername();
+
+        enterUsernameToRegisterForm(getUsername());
+        enterPasswordToRegisterForm(getPassword());
+        confirmPasswordField(getPassword());
+        clickRegisterButton();
 
     }
 
-    public void clickLogout() {
-        driver.findElement(By.xpath("//a[@href='/parabank/logout.htm']")).click();
+    public String getFirstName() {  //wiem, że nie tak
+      return "Jan";
+    }
+
+    public String getLastName() {
+        return "Nowak";
     }
 }
 
