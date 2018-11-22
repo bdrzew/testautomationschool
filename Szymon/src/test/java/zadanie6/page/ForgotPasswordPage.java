@@ -42,11 +42,11 @@ public class ForgotPasswordPage extends LeftNavigationMenu{
     }
 
     public String getConfirmationText() {
-        return null;
+        return driver.findElement(By.xpath("//div[@id='rightPanel']/p[1]")).getText();
     }
 
     public String getUsernameText() {
-        return null;
+        return driver.findElement(By.xpath("//div[@id='rightPanel']//p[2]")).getText();
     }
 
     public String getPasswordText() {

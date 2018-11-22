@@ -59,6 +59,8 @@ public class ForgotPasswordTest {
         forgotPasswordPage.enterSSN(user.getSsn());
         forgotPasswordPage.clickFindMyLogin();
 
+        //nie wiem czemu nei działa
+
         //        assertEquals("aktualne", "oczekiwane");
         assertEquals(forgotPasswordPage.getConfirmationText(), "Your login information was located successfully. You are now logged in.");
         assertEquals(forgotPasswordPage.getUsernameText(), user.getUsername());
