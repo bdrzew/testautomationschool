@@ -4,8 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class MainPage extends  LeftNavigationMenu{
-    private WebDriver driver;
+public class MainPage extends LeftNavigationMenu {
 
     public MainPage(WebDriver driver) {
         super(driver);

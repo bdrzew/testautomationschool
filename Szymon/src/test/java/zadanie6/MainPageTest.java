@@ -52,16 +52,16 @@ public class MainPageTest {
     public void successfulLoginTest() {
         RegisterPage userWillBe = new RegisterPage(driver);
         userWillBe.createRegularUser();
+        mainPage.clickLogout();
         mainPage.enterUsername(userWillBe.getUsername());
         mainPage.enterPassword(userWillBe.getPassword());
         mainPage.clickLogin();
 
 
-
-        assertEquals("Welcome"+"/n "+userWillBe.getFirstName()+" "
-                +userWillBe.getLastName(), mainPage.getWelcomeUserText());
+//        assertEquals("aktualne", "oczekiwane");
+        assertEquals("Welcome " + userWillBe.getFirstName() + " "
+                + userWillBe.getLastName(), mainPage.getWelcomeUserText());
     }
-
 
 
 }

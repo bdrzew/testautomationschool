@@ -4,8 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class RegisterPage  extends  LeftNavigationMenu{
-    private WebDriver driver;
+public class RegisterPage extends LeftNavigationMenu {
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -65,8 +64,6 @@ public class RegisterPage  extends  LeftNavigationMenu{
     }
 
 
-
-
     private String password;
     private String username;
 
@@ -108,7 +105,7 @@ public class RegisterPage  extends  LeftNavigationMenu{
     }
 
     public String getFirstName() {  //wiem, że nie tak
-      return "Jan";
+        return "Jan";
     }
 
     public String getLastName() {

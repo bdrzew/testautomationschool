@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 public class LeftNavigationMenu {
 
-    private WebDriver driver;
+    protected WebDriver driver;
 
-    public LeftNavigationMenu(WebDriver driver){
+    public LeftNavigationMenu(WebDriver driver) {
         this.driver = driver;
     }
 
