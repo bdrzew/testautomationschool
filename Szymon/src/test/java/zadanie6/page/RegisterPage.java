@@ -6,12 +6,27 @@ import org.openqa.selenium.WebDriver;
 
 public class RegisterPage extends LeftNavigationMenu {
 
+    private String password;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String addres;
+    private String city;
+    private String state;
+    private String zipCode;
+    private String PhoneNumber;
+    private String ssn;
+
     public RegisterPage(WebDriver driver) {
         super(driver);
     }
 
+    public void openPage(String url) {
+        driver.get(url);
+    }
+
     public void enterFirstName(String firstName) {
-        driver.findElement(By.id("customer.firstName")).sendKeys(firstName); //czego tu brakuje żeby nei było nullpointera, jak, gdzie inicjalizować
+        driver.findElement(By.id("customer.firstName")).sendKeys(firstName);
     }
 
     public void enterLastName(String lastName) {
@@ -63,9 +78,61 @@ public class RegisterPage extends LeftNavigationMenu {
         return driver.findElement(By.xpath("//div[@id='rightPanel']")).getText();
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-    private String password;
-    private String username;
+    public String getAddres() {
+        return addres;
+    }
+
+    public void setAddres(String addres) {
+        this.addres = addres;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
+    public String getFirstName() {  //wiem, że nie tak
+        return firstName;
+    }
+
+    private void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 
     public String getPassword() {
         return password;
@@ -73,6 +140,14 @@ public class RegisterPage extends LeftNavigationMenu {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
     }
 
     public String getUsername() {
@@ -84,32 +159,33 @@ public class RegisterPage extends LeftNavigationMenu {
     }
 
     public void createRegularUser() {
+        openPage("http://parabank.parasoft.com/parabank/register.htm");
+
+        setPassword("1");   //inicjalizację można by gdzieś indziej wypchnąć albo jakoś inaczej osobno zarządzać userami
+        setUsername();
+        setLastName("Nowak");
+        setFirstName("Jan");
+        setAddres("Sesame Street");
+        setCity("Kraków");
+        setState("Best State");
+        setZipCode("31-543");
+        setPhoneNumber("777888999");
+        setSsn("1234567890");
 
         enterFirstName(getFirstName());
         enterLastName(getLastName());
-        enterAddress("Sesame Street");
-        enterCity("Kraków");
-        enterState("Best State");
-        enterZipCode("31-543");
-        enterPhoneNumber("777888999");
-        enterSsn("1234567890");
-
-        setPassword("1");
-        setUsername();
+        enterAddress(getAddres());
+        enterCity(getCity());
+        enterState(getState());
+        enterZipCode(getZipCode());
+        enterPhoneNumber(getPhoneNumber());
+        enterSsn(getSsn());
 
         enterUsernameToRegisterForm(getUsername());
         enterPasswordToRegisterForm(getPassword());
         confirmPasswordField(getPassword());
         clickRegisterButton();
-
     }
 
-    public String getFirstName() {  //wiem, że nie tak
-        return "Jan";
-    }
-
-    public String getLastName() {
-        return "Nowak";
-    }
 }
 

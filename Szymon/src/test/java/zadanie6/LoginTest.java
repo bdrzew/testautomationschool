@@ -17,7 +17,7 @@ import static org.testng.Assert.assertEquals;
  * This class is designed to test elements for main page and left menu
  * at http://parabank.parasoft.com/parabank/index.htm
  */
-public class MainPageTest {
+public class LoginTest {
 
     private WebDriver driver;
     private MainPage mainPage;

@@ -12,7 +12,7 @@ import static org.testng.Assert.assertEquals;
  * This class is designed to test register form at
  * http://parabank.parasoft.com/parabank/register.htm
  */
-public class RegisterTest {
+public class RegistrationTest {
 
     private WebDriver driver;
     private RegisterPage registerPage;

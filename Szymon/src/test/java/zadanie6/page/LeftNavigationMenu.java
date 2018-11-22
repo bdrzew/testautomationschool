@@ -36,4 +36,8 @@ public class LeftNavigationMenu {
     public void clickLogin() {
         driver.findElement(By.xpath("//input[@value='Log In']")).click();
     }
+
+    public void clickForgotLoginInfo() {
+        driver.findElement(By.xpath("//a[contains(text(),'Forgot login info?')]")).click();
+    }
 }
