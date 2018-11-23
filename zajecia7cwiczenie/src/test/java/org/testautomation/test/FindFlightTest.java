@@ -1,4 +1,4 @@
-package org.testautomation;
+package org.testautomation.test;
 
 import org.testautomation.page.ChooseFlightPage;
 import org.testautomation.page.FlightOptionsPage;
