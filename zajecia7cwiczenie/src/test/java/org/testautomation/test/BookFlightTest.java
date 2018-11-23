@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 public class BookFlightTest extends SeleniumTest {
     @BeforeMethod
-    public void setup() {
+    public void xsetup() {
         new ChooseFlightPage(driver, "http://www.blazedemo.com")
                 .selectDepartureCity("San Diego")
                 .selectDestinationCity("Dublin")
