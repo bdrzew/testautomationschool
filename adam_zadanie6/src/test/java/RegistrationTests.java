@@ -2,7 +2,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
-//import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,7 +26,6 @@ public class RegistrationTests {
 
     @BeforeMethod
     public void before() {
-        //startPage.openPage("http://parabank.parasoft.com");
         startPage.openStartPage();
         registrationPage.openRegistrationPage();
         startPage.maximizePage();
@@ -46,20 +44,10 @@ public class RegistrationTests {
     }
     @Test
     public void assertIfPasswordFieldsDidNotMatch() {
-        String passwordsError = "Passwords did not match.";
-
-        registrationPage.setFirstName("Piotr");
-        registrationPage.setLastName("Nowak");
-        registrationPage.setAddress("Nowohucka 21");
-        registrationPage.setCity("Krakow");
-        registrationPage.setState("Malopolskie");
-        registrationPage.setZipCode("11-222");
-        registrationPage.setPhone("111-222-333");
-        registrationPage.setSnn("12345");
-        registrationPage.setUsername("673498031");
-        registrationPage.setPasswordReg("AlaMaKota123");
-        registrationPage.setConfirmPassword("AlaMaKota124");
-        registrationPage.clickRegister();
-        assertEquals(registrationPage.getPassDidNotMatchErrorDisplayed(), passwordsError);
+        String passwordsError = "The username and password could not be verified.";
+        startPage.setLogin("adamm");
+        startPage.setPassword("1234");
+        startPage.clickLoginButton();
+        assertEquals(registrationPage.getPasswordNotMatchErrorDisplayed(), passwordsError);
     }
 }
