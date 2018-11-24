@@ -21,7 +21,7 @@ public class BookFlightTest extends SeleniumTest {
     @Test
     public void bookFlightVerify(){
         new FlightOptionsPage(driver)
-                .clickFlightButton(1)
+                .clickFlightButton(0)
                 .setUserName("Adam")
                 .clickPurchaseFlight()
                 .assertTextIsPresent("Thank you");

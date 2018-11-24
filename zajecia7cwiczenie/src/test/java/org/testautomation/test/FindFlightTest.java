@@ -1,7 +1,6 @@
 package org.testautomation.test;
 
 import org.testautomation.page.ChooseFlightPage;
-import org.testautomation.page.FlightOptionsPage;
 import org.testng.annotations.Test;
 
 public class FindFlightTest extends SeleniumTest {
@@ -11,10 +10,7 @@ public class FindFlightTest extends SeleniumTest {
         new ChooseFlightPage(driver, "http://www.blazedemo.com")
                 .selectDepartureCity("San Diego")
                 .selectDestinationCity("Dublin")
-                .clickFindFlights();
-
-        new FlightOptionsPage(driver)
+                .clickFindFlights()
                 .checkNumberOfVisibleFlights(5);
-
     }
 }
