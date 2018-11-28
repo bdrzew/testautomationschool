@@ -1,8 +1,8 @@
 package Szymon7.page;
+import Szymon7.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.w3c.dom.html.HTMLInputElement;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -19,7 +19,7 @@ public class RegistrationConfirmationPage extends LeftNavigationMenu {
     }
 
     public RegistrationConfirmationPage assertThatWelcomeTextForUserIsPresent() {
-        assertEquals(headingWelcome.getText(),"Welcome "+new Users().getUsername());
+        assertEquals(headingWelcome.getText(),"Welcome "+ user.getUsername());
         return this;
     }
 

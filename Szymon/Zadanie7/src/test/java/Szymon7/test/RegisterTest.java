@@ -1,7 +1,6 @@
 package Szymon7.test;
 
 import org.testng.annotations.Test;
-import Szymon7.page.Users;
 import Szymon7.page.WelcomePage;
 
 public class RegisterTest extends SeleniumTest {
@@ -70,7 +69,7 @@ public class RegisterTest extends SeleniumTest {
                 .enterZipCode("34-400")
                 .enterPhone("666222777")
                 .enterSSN("123465")
-                .enterUsernameAgain()
+                .enterTheSameUsernameAgain()
                 .enterPassword("secretPass")
                 .enterPasswordAgain("secretPass")
                 .clickRegister()

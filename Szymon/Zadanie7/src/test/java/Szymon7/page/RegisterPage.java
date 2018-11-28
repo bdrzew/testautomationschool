@@ -1,6 +1,6 @@
 package Szymon7.page;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import Szymon7.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.testng.Assert.assertEquals;
 
 public class RegisterPage extends LeftNavigationMenu {
+    Users user = new Users();
 
     @FindBy(id = "customer.firstName")
     private WebElement firstNameField;
@@ -37,6 +38,7 @@ public class RegisterPage extends LeftNavigationMenu {
     private WebElement repeatedPasswordErrorsText;
     @FindBy(id = "customer.username.errors")
     private WebElement userValidationText;
+
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -83,13 +85,17 @@ public class RegisterPage extends LeftNavigationMenu {
     }
 
     public RegisterPage enterUsername() {
-        new Users().setUsername();
-        usernameField.sendKeys(new Users().getUsername());
+        user.setUsername();
+        usernameField.sendKeys(user.getUsername());
         return this;
-    }
 
-    public RegisterPage enterUsernameAgain() {
-        usernameField.sendKeys(new Users().getUsername());
+    }
+    /**
+     * This method is only taking not setting user.
+     * @return
+     */
+    public RegisterPage enterTheSameUsernameAgain() {
+        usernameField.sendKeys(user.getUsername());
         return this;
     }
 
@@ -104,7 +110,7 @@ public class RegisterPage extends LeftNavigationMenu {
     }
 
     /**
-     * This methor is not like RegistrationConfirmationPage clickRegisterAndRedirect
+     * This method is not like RegistrationConfirmationPage clickRegisterAndRedirect
      * because we need to assert negative results on RegisterPage
      * @return
      */

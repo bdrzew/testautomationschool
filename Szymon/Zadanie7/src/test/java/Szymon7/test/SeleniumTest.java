@@ -17,10 +17,6 @@ public abstract class SeleniumTest {
         driver = new ChromeDriver();
     }
 
-    @BeforeTest
-    public String beforeEachTest(){
-        return new RegisterPage(driver).username(5);
-    }
     @AfterMethod
     public void eachTestTeardown(){
         try {
