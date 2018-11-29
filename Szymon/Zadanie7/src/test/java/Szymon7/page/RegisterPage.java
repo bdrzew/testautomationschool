@@ -84,8 +84,7 @@ public class RegisterPage extends LeftNavigationMenu {
         return this;
     }
 
-    public RegisterPage enterUsername() {
-        user.setUsername();
+    public RegisterPage enterUsername(Users user) {
         usernameField.sendKeys(user.getUsername());
         return this;
 
@@ -94,10 +93,10 @@ public class RegisterPage extends LeftNavigationMenu {
      * This method is only taking not setting user.
      * @return
      */
-    public RegisterPage enterTheSameUsernameAgain() {
-        usernameField.sendKeys(user.getUsername());
-        return this;
-    }
+//    public RegisterPage enterTheSameUsernameAgain() {
+//        usernameField.sendKeys(user.getUsername());
+//        return this;
+//    }
 
     public RegisterPage enterPassword(String secretPass) {
         passField.sendKeys(secretPass);

@@ -1,5 +1,6 @@
 package Szymon7.test;
 
+import Szymon7.Users;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

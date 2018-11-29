@@ -1,9 +1,19 @@
 package Szymon7.test;
 
+import Szymon7.Users;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import Szymon7.page.WelcomePage;
 
 public class RegisterTest extends SeleniumTest {
+
+    private Users user = new Users();
+
+
+    @BeforeTest
+    public void eachTestSetup(){
+        user.setUsername();
+    }
 
     @Test
     public void successfulRegistrationTest(){
@@ -17,11 +27,11 @@ public class RegisterTest extends SeleniumTest {
                 .enterZipCode("34-400")
                 .enterPhone("666222777")
                 .enterSSN("123465")
-                .enterUsername()
+                .enterUsername(user)
                 .enterPassword("secretPass")
                 .enterPasswordAgain("secretPass")
                 .clickRegisterAndRedirect()
-                .assertThatWelcomeTextForUserIsPresent();
+                .assertThatWelcomeTextForUserIsPresent(user);
     }
 
     @Test
@@ -36,7 +46,7 @@ public class RegisterTest extends SeleniumTest {
                 .enterZipCode("34-400")
                 .enterPhone("666222777")
                 .enterSSN("123465")
-                .enterUsername()
+                .enterUsername(user)
                 .enterPassword("secretPass")
                 .enterPasswordAgain("differentPass")
                 .clickRegister()
@@ -55,7 +65,7 @@ public class RegisterTest extends SeleniumTest {
                 .enterZipCode("34-400")
                 .enterPhone("666222777")
                 .enterSSN("123465")
-                .enterUsername()
+                .enterUsername(user)
                 .enterPassword("secretPass")
                 .enterPasswordAgain("secretPass")
                 .clickRegisterAndRedirect()
@@ -69,7 +79,7 @@ public class RegisterTest extends SeleniumTest {
                 .enterZipCode("34-400")
                 .enterPhone("666222777")
                 .enterSSN("123465")
-                .enterTheSameUsernameAgain()
+                .enterUsername(user)
                 .enterPassword("secretPass")
                 .enterPasswordAgain("secretPass")
                 .clickRegister()
