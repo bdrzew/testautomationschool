@@ -7,14 +7,19 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends Page {
 
-    @FindBy(css = "name=username")
+    @FindBy(xpath = "//input[@name='username']")
     private WebElement login;
 
-    @FindBy(css = "name=password")
+    @FindBy(xpath ="//input[@name='password']")
     private WebElement password;
 
-    @FindBy(css = ".login .button")
+    @FindBy(xpath = "//input[@value='Log In']")
     private WebElement loginButton;
+
+    @FindBy(xpath = "//a[contains(text(),'Register')]")
+    private WebElement registerButton;
+
+
 
     public LoginPage(WebDriver driver, String url) {
         super(driver);
@@ -33,6 +38,12 @@ public class LoginPage extends Page {
 
     public LoginPage clickLoginButton() {
         loginButton.click();
+        return new LoginPage(driver, "http://parabank.parasoft.com/");
+    }
+
+
+    public LoginPage clickRegister() {
+        registerButton.click();
         return new LoginPage(driver, "http://parabank.parasoft.com/");
     }
 }
