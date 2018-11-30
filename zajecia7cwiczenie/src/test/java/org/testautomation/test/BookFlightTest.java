@@ -16,8 +16,8 @@ public class BookFlightTest extends SeleniumTest {
                 .selectDepartureCity("San Diego")
                 .selectDestinationCity("Dublin")
                 .clickFindFlights();
-
     }
+
     @Test
     public void bookFlightVerify(){
         new FlightOptionsPage(driver)

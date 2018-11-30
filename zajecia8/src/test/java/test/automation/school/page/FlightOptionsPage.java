@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import test.automation.school.page.common.Page;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FlightOptionsPage extends Page {
 
@@ -16,7 +17,7 @@ public class FlightOptionsPage extends Page {
     private List<WebElement> rows;
 
     @FindBy(css = ".btn-small")
-    private  List<WebElement> buttons;
+    private List<WebElement> buttons;
 
     public FlightOptionsPage(WebDriver driver) {
         super(driver);
@@ -25,7 +26,6 @@ public class FlightOptionsPage extends Page {
     public TrawellerFormPage clickFlightButton(int rowNumber) {
         buttons.get(rowNumber).click();
         return new TrawellerFormPage(driver);
-
     }
 
     public List<WebElement> getFlights() {

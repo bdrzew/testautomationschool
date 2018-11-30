@@ -17,4 +17,7 @@ public class OrderSummaryPage extends Page {
     }
 
 
+    public WebElement getLabelThankYou() {
+        return labelThankYou;
+    }
 }
