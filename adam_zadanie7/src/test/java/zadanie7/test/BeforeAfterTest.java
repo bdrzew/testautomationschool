@@ -10,13 +10,13 @@ public abstract class BeforeAfterTest {
     protected WebDriver driver;
 
     @BeforeClass
-    public void Setup() {
+    public void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
     @AfterClass
-    public void EndTest() {
+    public void endTest() {
         driver.quit();
     }
 }

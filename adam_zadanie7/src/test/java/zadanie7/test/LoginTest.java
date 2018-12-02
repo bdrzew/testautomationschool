@@ -8,7 +8,7 @@ public class LoginTest extends BeforeAfterTest {
     LoginPage loginPage;
 
     @BeforeMethod
-    public void Start() {
+    public void start() {
         loginPage = new LoginPage(driver);
     }
 
