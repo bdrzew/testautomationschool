@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.testng.Assert.assertTrue;
+
 
 public class LoginPage extends Page {
 
@@ -19,11 +21,14 @@ public class LoginPage extends Page {
     @FindBy(xpath = "//a[contains(text(),'Register')]")
     private WebElement registerButton;
 
+    @FindBy(xpath = "//p[@class='smallText']")
+    private WebElement labelWelcome;
 
+    @FindBy(xpath = "//p[@class='error']")
+    private WebElement errorPasswd;
 
-    public LoginPage(WebDriver driver, String url) {
+    public LoginPage(WebDriver driver) {
         super(driver);
-        driver.get(url);
     }
 
     public LoginPage setLogin(String inputLogin) {
@@ -38,12 +43,21 @@ public class LoginPage extends Page {
 
     public LoginPage clickLoginButton() {
         loginButton.click();
-        return new LoginPage(driver, "http://parabank.parasoft.com/");
+        return this;
     }
 
+    public LoginPage openLoginPage() {
+        driver.get("http://parabank.parasoft.com/");
+        return this;
+    }
 
-    public LoginPage clickRegister() {
-        registerButton.click();
-        return new LoginPage(driver, "http://parabank.parasoft.com/");
+    public LoginPage assertIfUserIsLogin(String welcome) {
+        assertTrue(labelWelcome.getText().contains(welcome), "Welcome Adam M");
+        return this;
+    }
+
+    public LoginPage assertPasswordNotMatch(String passwd) {
+        assertTrue(errorPasswd.getText().contains(passwd), "The username and password could not be verified.");
+        return null;
     }
 }

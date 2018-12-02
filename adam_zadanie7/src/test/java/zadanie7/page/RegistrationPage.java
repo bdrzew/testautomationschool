@@ -19,16 +19,18 @@ public class RegistrationPage extends Page {
     @FindBy(xpath = "//input[@value='Log In']")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//p[@class='error']")
-    private WebElement errorPasswd;
 
     @FindBy(xpath = "//input[@value='Register']")
     private WebElement clickRegisteration;
 
 
-    public RegistrationPage(WebDriver driver, String url) {
-
+    public RegistrationPage(WebDriver driver) {
         super(driver);
+    }
+
+    public RegistrationPage openRegistrationPage() {
+        driver.get("http://parabank.parasoft.com/parabank/register.htm");
+        return this;
     }
 
     public RegistrationPage assertName(String name) {
@@ -36,28 +38,8 @@ public class RegistrationPage extends Page {
         return this;
     }
 
-    public RegistrationPage setLogin(String userLogin) {
-        login.sendKeys(userLogin);
-        return this;
-    }
-
-    public RegistrationPage setPassword(String userPassword) {
-        password.sendKeys(userPassword);
-        return this;
-    }
-
-    public RegistrationPage clickLoginButton() {
-        loginButton.click();
-        return new RegistrationPage(driver, "http://parabank/register.htm");
-    }
-
-    public RegistrationPage assertPasswordNotMatch(String passwd) {
-        assertTrue(errorPasswd.getText().contains(passwd), "The username and password could not be verified.");
-        return null;
-    }
-
     public RegistrationPage clickReg() {
         clickRegisteration.click();
-        return new RegistrationPage(driver, "http://parabank/register.htm");
+        return this;
     }
 }

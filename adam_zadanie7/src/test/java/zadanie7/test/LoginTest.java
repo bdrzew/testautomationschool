@@ -3,20 +3,30 @@ package zadanie7.test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import zadanie7.page.LoginPage;
-import zadanie7.page.Register;
 
 public class LoginTest extends BeforeAfterTest {
+    LoginPage loginPage;
+
     @BeforeMethod
     public void Start() {
-        new LoginPage(driver, "http://parabank.parasoft.com/")
-                .setLogin("adamm")
-                .setPassword("1234")
-                .clickLoginButton();
+        loginPage = new LoginPage(driver);
     }
 
     @Test
     public void checkIfUserIsLogin() {
-        new Register(driver, "http://parabank.parasoft.com/parabank/overview.htm")
+        loginPage.openLoginPage()
+                .setLogin("adamm")
+                .setPassword("1234")
+                .clickLoginButton()
                 .assertIfUserIsLogin("Welcome Adam M");
+    }
+
+    @Test
+    public void assertIfPasswordFieldsDidNotMatch() {
+        loginPage.openLoginPage()
+                .setLogin("adamm")
+                .setPassword("123")
+                .clickLoginButton()
+                .assertPasswordNotMatch("The username and password could not be verified.");
     }
 }
