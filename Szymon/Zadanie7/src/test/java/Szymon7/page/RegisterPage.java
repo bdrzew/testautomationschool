@@ -1,6 +1,6 @@
 package Szymon7.page;
 
-import Szymon7.Users;
+import Szymon7.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.testng.Assert.assertEquals;
 
 public class RegisterPage extends LeftNavigationMenu {
-    Users user = new Users();
+    User user = new User();
 
     @FindBy(id = "customer.firstName")
     private WebElement firstNameField;
@@ -84,7 +84,7 @@ public class RegisterPage extends LeftNavigationMenu {
         return this;
     }
 
-    public RegisterPage enterUsername(Users user) {
+    public RegisterPage enterUsername(User user) {
         usernameField.sendKeys(user.getUsername());
         return this;
 
@@ -123,14 +123,11 @@ public class RegisterPage extends LeftNavigationMenu {
         return this;
     }
 
-    public RegisterPage assertThatPassValidationTextIsPresent() {
-        assertEquals(repeatedPasswordErrorsText.getText(), "Passwords did not match.");
-        return this;
+    public WebElement getRepeatedPasswordErrorsText() {
+        return repeatedPasswordErrorsText;
     }
 
-    public RegisterPage assertThatUserValidationTextIsPresent() {
-        assertEquals(userValidationText.getText(), "This username already exists.");
-        return this;
+    public WebElement getUserValidationText() {
+        return userValidationText;
     }
-
 }

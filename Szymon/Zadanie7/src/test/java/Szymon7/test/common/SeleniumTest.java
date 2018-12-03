@@ -1,11 +1,9 @@
-package Szymon7.test;
+package Szymon7.test.common;
 
-import Szymon7.Users;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-import Szymon7.page.RegisterPage;
 import Szymon7.page.RegistrationConfirmationPage;
 
 
