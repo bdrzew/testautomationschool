@@ -3,6 +3,7 @@ package Szymon7.test;
 import Szymon7.User;
 import Szymon7.assertion.RegisterAssertion;
 import Szymon7.assertion.RegistrationConfirmationAssertion;
+import Szymon7.scenario.RegisterCorrectUserScenario;
 import Szymon7.test.common.SeleniumTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -12,7 +13,6 @@ public class RegisterTest extends SeleniumTest {
 
     private User user = new User();
 
-
     @BeforeTest
     public void eachTestSetup(){
         user.setUsername();
@@ -21,21 +21,9 @@ public class RegisterTest extends SeleniumTest {
     @Test
     public void successfulRegistrationTest(){
         new WelcomePage(driver, "http://parabank.parasoft.com")
-                .clickRegisterLink()
-                .enterFirstName("Jan")
-                .enterLastName("Nowak")
-                .enterAddress("Nadwodnia 22")
-                .enterCity("Kraków")
-                .enterState("małopolska")
-                .enterZipCode("34-400")
-                .enterPhone("666222777")
-                .enterSSN("123465")
-                .enterUsername(user)
-                .enterPassword("secretPass")
-                .enterPasswordAgain("secretPass")
-                .clickRegisterAndRedirect()
+                    .run(new RegisterCorrectUserScenario(user))
                 .check(RegistrationConfirmationAssertion.class)
-                .assertThatWelcomeTextForUserIsPresent(user);
+                    .assertThatWelcomeTextForUserIsPresent(user);
     }
 
     @Test
@@ -50,7 +38,7 @@ public class RegisterTest extends SeleniumTest {
                 .enterZipCode("34-400")
                 .enterPhone("666222777")
                 .enterSSN("123465")
-                .enterUsername(user)
+//                .enterUsername(user)  //TODO
                 .enterPassword("secretPass")
                 .enterPasswordAgain("differentPass")
                 .clickRegister()
@@ -70,7 +58,7 @@ public class RegisterTest extends SeleniumTest {
                 .enterZipCode("34-400")
                 .enterPhone("666222777")
                 .enterSSN("123465")
-                .enterUsername(user)
+//                .enterUsername(user)      //TODO
                 .enterPassword("secretPass")
                 .enterPasswordAgain("secretPass")
                 .clickRegisterAndRedirect()
@@ -84,7 +72,7 @@ public class RegisterTest extends SeleniumTest {
                 .enterZipCode("34-400")
                 .enterPhone("666222777")
                 .enterSSN("123465")
-                .enterUsername(user)
+//                .enterUsername(user)      //TODO
                 .enterPassword("secretPass")
                 .enterPasswordAgain("secretPass")
                 .clickRegister()

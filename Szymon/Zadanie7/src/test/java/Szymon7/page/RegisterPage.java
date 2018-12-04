@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import static org.testng.Assert.assertEquals;
 
 public class RegisterPage extends LeftNavigationMenu {
-    User user = new User();
 
     @FindBy(id = "customer.firstName")
     private WebElement firstNameField;
@@ -84,8 +83,8 @@ public class RegisterPage extends LeftNavigationMenu {
         return this;
     }
 
-    public RegisterPage enterUsername(User user) {
-        usernameField.sendKeys(user.getUsername());
+    public RegisterPage enterUsername(String user) {
+        usernameField.sendKeys(user);
         return this;
 
     }
