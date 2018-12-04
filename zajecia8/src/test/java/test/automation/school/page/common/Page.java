@@ -13,14 +13,9 @@ public abstract class Page {
         PageFactory.initElements(driver, this);
     }
 
-    public <G extends Page, T extends Assertion<G>> T check(Class<T> clazz) throws RuntimeException {
-        try {
-            Assertion<G> assertion = clazz.newInstance();
-            assertion.setPage((G)this);
-            return (T) assertion;
-        } catch (InstantiationException | IllegalAccessException e) {
-            throw new RuntimeException("Error occur during creating Assertions.", e);
-        }
+    public <G extends Page, T extends Assertion<G>> T check(T assertion) {
+        assertion.setPage((G)this);
+        return assertion;
     }
 
     public <Input extends Page, Output extends Page> Output run(Scenario<Input, Output> scenario) {

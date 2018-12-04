@@ -1,12 +1,10 @@
 package test.automation.school.test;
 
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import test.automation.school.assertion.FlightOptionsAssertion;
 import test.automation.school.assertion.OrderSummaryAssertion;
 import test.automation.school.page.ChooseFlightPage;
-import test.automation.school.page.FlightOptionsPage;
 import test.automation.school.scenario.PickFlightScenario;
 import test.automation.school.scenario.PurchaseScenrio;
 import test.automation.school.test.common.SeleniumTest;
@@ -32,7 +30,7 @@ public class BlazedemoAssertionTest extends SeleniumTest
     public void airlinesTest() {
         new ChooseFlightPage(driver, "http://www.blazedemo.com")
                 .run(new PickFlightScenario("Paris", "Buenos Aires"))
-            .check(FlightOptionsAssertion.class)
+            .check(new FlightOptionsAssertion())
                 .verifyFlightNumberOrder(flightNumbersOrderVA)
                 .verifyFlightNumbersUnordered(flightNumbersUnordered);
     }
@@ -43,7 +41,7 @@ public class BlazedemoAssertionTest extends SeleniumTest
                 .run(new PickFlightScenario("Paris", "Buenos Aires"))
                 .clickFlightButton(0)
                 .run(new PurchaseScenrio("Adam"))
-                .check(OrderSummaryAssertion.class)
+                .check(new OrderSummaryAssertion())
                     .verifyTextIsPresent("Thank you");
     }
 }
