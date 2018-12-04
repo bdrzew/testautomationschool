@@ -21,8 +21,8 @@ public class RegistrationConfirmationPage extends LeftNavigationMenu {
     }
 
     public WelcomePage clickLogout() {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        WebElement asd = wait.until(ExpectedConditions.elementToBeClickable(logoutLink));
+//        WebDriverWait wait = new WebDriverWait(driver, 20);
+//        WebElement asd = wait.until(ExpectedConditions.elementToBeClickable(logoutLink));
         logoutLink.click();
         return new WelcomePage(driver);
     }

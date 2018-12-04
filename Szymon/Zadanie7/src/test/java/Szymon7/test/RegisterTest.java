@@ -3,7 +3,7 @@ package Szymon7.test;
 import Szymon7.User;
 import Szymon7.assertion.RegisterAssertion;
 import Szymon7.assertion.RegistrationConfirmationAssertion;
-import Szymon7.scenario.RegisterCorrectUserScenario;
+import Szymon7.scenario.FillRegisterWithCorrectUserScenario;
 import Szymon7.test.common.SeleniumTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -21,7 +21,9 @@ public class RegisterTest extends SeleniumTest {
     @Test
     public void successfulRegistrationTest(){
         new WelcomePage(driver, "http://parabank.parasoft.com")
-                    .run(new RegisterCorrectUserScenario(user))
+                .clickRegisterLink()
+                    .run(new FillRegisterWithCorrectUserScenario(user))
+                .clickRegisterAndRedirect()
                 .check(RegistrationConfirmationAssertion.class)
                     .assertThatWelcomeTextForUserIsPresent(user);
     }
@@ -30,16 +32,16 @@ public class RegisterTest extends SeleniumTest {
     public void wrongPasswordRepeatedTest(){
         new WelcomePage (driver, "http://parabank.parasoft.com")
                 .clickRegisterLink()
-                .enterFirstName("Jan")
-                .enterLastName("Nowak")
-                .enterAddress("Nadwodnia 22")
-                .enterCity("Kraków")
-                .enterState("małopolska")
-                .enterZipCode("34-400")
-                .enterPhone("666222777")
-                .enterSSN("123465")
-//                .enterUsername(user)  //TODO
-                .enterPassword("secretPass")
+                .enterFirstName(user.getFirstName())
+                .enterLastName(user.getLastName())
+                .enterAddress(user.getAddress())
+                .enterCity(user.getCity())
+                .enterState(user.getState())
+                .enterZipCode(user.getZipCode())
+                .enterPhone(user.getPhone())
+                .enterSSN(user.getSSN())
+                .enterUsername(user.getUsername())
+                .enterPassword(user.getPassword())
                 .enterPasswordAgain("differentPass")
                 .clickRegister()
                 .check(RegisterAssertion.class)
@@ -50,31 +52,11 @@ public class RegisterTest extends SeleniumTest {
     public void userAlreadyExistsTest(){
         new WelcomePage (driver, "http://parabank.parasoft.com")
                 .clickRegisterLink()
-                .enterFirstName("Jan")
-                .enterLastName("Nowak")
-                .enterAddress("Nadwodnia 22")
-                .enterCity("Kraków")
-                .enterState("małopolska")
-                .enterZipCode("34-400")
-                .enterPhone("666222777")
-                .enterSSN("123465")
-//                .enterUsername(user)      //TODO
-                .enterPassword("secretPass")
-                .enterPasswordAgain("secretPass")
+                    .run(new FillRegisterWithCorrectUserScenario(user))
                 .clickRegisterAndRedirect()
                 .clickLogout()
                 .clickRegisterLink()
-                .enterFirstName("Jan")
-                .enterLastName("Nowak")
-                .enterAddress("Nadwodnia 22")
-                .enterCity("Kraków")
-                .enterState("małopolska")
-                .enterZipCode("34-400")
-                .enterPhone("666222777")
-                .enterSSN("123465")
-//                .enterUsername(user)      //TODO
-                .enterPassword("secretPass")
-                .enterPasswordAgain("secretPass")
+                    .run(new FillRegisterWithCorrectUserScenario(user))
                 .clickRegister()
                 .check(RegisterAssertion.class)
                 .assertThatUserValidationTextIsPresent();

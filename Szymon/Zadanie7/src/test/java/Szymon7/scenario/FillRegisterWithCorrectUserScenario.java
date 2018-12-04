@@ -6,16 +6,16 @@ import Szymon7.page.RegistrationConfirmationPage;
 import Szymon7.page.WelcomePage;
 import Szymon7.scenario.common.Scenario;
 
-public class RegisterCorrectUserScenario implements Scenario<WelcomePage, RegistrationConfirmationPage> {
+public class FillRegisterWithCorrectUserScenario implements Scenario<RegisterPage, RegisterPage> {
 
     private User user;
 
-    public RegisterCorrectUserScenario(User user){
+    public FillRegisterWithCorrectUserScenario(User user){
+        this.user = user;
     }
     @Override
-    public RegistrationConfirmationPage run(WelcomePage welcomePage) {
-        return welcomePage
-                .clickRegisterLink()
+    public RegisterPage run(RegisterPage registerPage) {
+        return registerPage
                 .enterFirstName(user.getFirstName())
                 .enterLastName(user.getLastName())
                 .enterAddress(user.getAddress())
@@ -26,7 +26,6 @@ public class RegisterCorrectUserScenario implements Scenario<WelcomePage, Regist
                 .enterSSN(user.getSSN())
                 .enterUsername(user.getUsername())
                 .enterPassword(user.getPassword())
-                .enterPasswordAgain(user.getPasswordAgain())
-                .clickRegisterAndRedirect();
+                .enterPasswordAgain(user.getPasswordAgain());
     }
 }
