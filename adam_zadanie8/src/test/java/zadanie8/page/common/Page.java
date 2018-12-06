@@ -4,6 +4,7 @@ package zadanie8.page.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import zadanie8.assertion.common.Assertion;
 import zadanie8.scenario.common.Scenario;
 
 public abstract class Page {
@@ -14,9 +15,9 @@ public abstract class Page {
         PageFactory.initElements(driver, this);
     }
 
-    public <G extends Page, T extends test.automation.school.assertion.common.Assertion<G>> T check(Class<T> clazz) throws RuntimeException {
+    public <G extends Page, T extends Assertion<G>> T check(Class<T> clazz) throws RuntimeException {
         try {
-            test.automation.school.assertion.common.Assertion<G> assertion = clazz.newInstance();
+            Assertion<G> assertion = clazz.newInstance();
             assertion.setPage((G)this);
             return (T) assertion;
         } catch (InstantiationException | IllegalAccessException e) {
