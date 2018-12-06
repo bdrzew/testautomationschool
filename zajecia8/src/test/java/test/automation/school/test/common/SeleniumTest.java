@@ -1,21 +1,21 @@
 package test.automation.school.test.common;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import test.automation.school.config.DriverType;
+import test.automation.school.config.WebDriverFactory;
 
 public abstract class SeleniumTest {
     protected WebDriver driver;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void classSetup() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = WebDriverFactory.getDriver(
+                DriverType.valueOf(System.getProperty("driver", "chrome").toUpperCase()));
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void classTeardown() {
         driver.quit();
     }

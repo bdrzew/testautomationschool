@@ -1,6 +1,9 @@
 package test.automation.school.test;
 
 
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import test.automation.school.assertion.FlightOptionsAssertion;
 import test.automation.school.assertion.OrderSummaryAssertion;
@@ -21,14 +24,21 @@ public class BlazedemoAssertionTest extends SeleniumTest
 {
     private List<String> flightNumbersOrderVA = Arrays.asList("43", "234", "9696", "12", "4346");
     private Set<String> flightNumbersUnordered = new HashSet<>(Arrays.asList("12", "43", "9696", "4346", "234"));
+    private String url;
+
+    @BeforeClass(alwaysRun = true)
+    @Parameters({"url"})
+    public void blazedemoAssertionClassSetup(String url) {
+        this.url = url;
+    }
 
     /**
      * Verifies if flight numbers of 'Virgin America' airlines are displayed in right order
      * And if all flight are there, no matter in what order
      */
-    @Test
+    @Test(groups = {"SMOKE", "BLAZE"})
     public void airlinesTest() {
-        new ChooseFlightPage(driver, "http://www.blazedemo.com")
+        new ChooseFlightPage(driver, url)
                 .run(new PickFlightScenario("Paris", "Buenos Aires"))
             .check(new FlightOptionsAssertion())
                 .verifyFlightNumberOrder(flightNumbersOrderVA)
@@ -37,7 +47,7 @@ public class BlazedemoAssertionTest extends SeleniumTest
 
     @Test
     public void bookFlight() {
-        new ChooseFlightPage(driver, "http://www.blazedemo.com")
+        new ChooseFlightPage(driver, url)
                 .run(new PickFlightScenario("Paris", "Buenos Aires"))
                 .clickFlightButton(0)
                 .run(new PurchaseScenrio("Adam"))

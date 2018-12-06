@@ -1,6 +1,7 @@
 package test.automation.school.test;
 
 
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import test.automation.school.assertion.FlightOptionsAssertion;
 import test.automation.school.page.ChooseFlightPage;
@@ -23,8 +24,9 @@ public class BlazedemoScenarioTest extends SeleniumTest
      * And if all flight are there, no matter in what order
      */
     @Test
-    public void airlinesTest() {
-        new ChooseFlightPage(driver, "http://www.blazedemo.com")
+    @Parameters({"url"})
+    public void airlinesTest(String url) {
+        new ChooseFlightPage(driver, url)
             .run(new PickFlightScenario("Boston", "Berlin"))
             .clickFlightButton(1);
           //.assertSomething();
