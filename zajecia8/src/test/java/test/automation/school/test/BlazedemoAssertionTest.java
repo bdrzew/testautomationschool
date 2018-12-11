@@ -1,6 +1,7 @@
 package test.automation.school.test;
 
 
+import org.testng.TestNG;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -33,10 +34,10 @@ public class BlazedemoAssertionTest extends SeleniumTest
     }
 
     /**
-     * Verifies if flight numbers of 'Virgin America' airlines are displayed in right order
+     * Verifies if flight numbers are displayed in right order
      * And if all flight are there, no matter in what order
      */
-    @Test(groups = {"SMOKE", "BLAZE"})
+    @Test(groups = {"SMOKE"})
     public void airlinesTest() {
         new ChooseFlightPage(driver, url)
                 .run(new PickFlightScenario("Paris", "Buenos Aires"))
@@ -45,7 +46,7 @@ public class BlazedemoAssertionTest extends SeleniumTest
                 .verifyFlightNumbersUnordered(flightNumbersUnordered);
     }
 
-    @Test
+    @Test(groups = {"UI_REGRESSION"})
     public void bookFlight() {
         new ChooseFlightPage(driver, url)
                 .run(new PickFlightScenario("Paris", "Buenos Aires"))
@@ -54,4 +55,6 @@ public class BlazedemoAssertionTest extends SeleniumTest
                 .check(new OrderSummaryAssertion())
                     .verifyTextIsPresent("Thank you");
     }
+
+
 }

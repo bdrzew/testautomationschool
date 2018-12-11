@@ -28,7 +28,7 @@ public class BlazedemoScenarioTest extends SeleniumTest
     }
 
     /**
-     * Verifies if flight numbers of 'Virgin America' airlines are displayed in right order
+     * Verifies if flight numbers are displayed in right order
      * And if all flight are there, no matter in what order
      */
     @Test(dataProvider = "myProvider")
