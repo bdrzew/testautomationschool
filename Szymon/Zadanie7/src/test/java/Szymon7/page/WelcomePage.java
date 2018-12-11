@@ -1,10 +1,8 @@
 package Szymon7.page;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-public class WelcomePage extends LeftNavigationMenu {
+public class WelcomePage extends CustomerLoginPage {
 
     public WelcomePage(WebDriver driver, String url) {
         super(driver);

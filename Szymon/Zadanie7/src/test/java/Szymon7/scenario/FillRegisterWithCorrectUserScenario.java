@@ -13,6 +13,7 @@ public class FillRegisterWithCorrectUserScenario implements Scenario<RegisterPag
     public FillRegisterWithCorrectUserScenario(User user){
         this.user = user;
     }
+
     @Override
     public RegisterPage run(RegisterPage registerPage) {
         return registerPage

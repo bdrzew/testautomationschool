@@ -1,5 +1,4 @@
 package Szymon7.page;
-import Szymon7.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class RegistrationConfirmationPage extends LeftNavigationMenu {
+public class RegistrationConfirmationPage extends CustomerLoginPage {
     @FindBy(className = "title")
     private WebElement headingWelcome;
 
@@ -21,9 +20,11 @@ public class RegistrationConfirmationPage extends LeftNavigationMenu {
     }
 
     public WelcomePage clickLogout() {
-//        WebDriverWait wait = new WebDriverWait(driver, 20);
-//        WebElement asd = wait.until(ExpectedConditions.elementToBeClickable(logoutLink));
-        logoutLink.click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(logoutLink)).click();
+        // mam tu problem, jak puszczam wszystkie testy to nie przechodzi
+        // a jak jeden to zawsze dziala :|
+        // Bartku, jak żyć?
         return new WelcomePage(driver);
     }
 

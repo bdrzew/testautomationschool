@@ -1,4 +1,4 @@
-package Szymon7.assertion;
+package Szymon7.assertion.common;
 
 import Szymon7.page.common.Page;
 

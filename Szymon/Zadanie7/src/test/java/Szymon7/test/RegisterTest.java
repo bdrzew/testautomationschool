@@ -24,7 +24,7 @@ public class RegisterTest extends SeleniumTest {
                 .clickRegisterLink()
                     .run(new FillRegisterWithCorrectUserScenario(user))
                 .clickRegisterAndRedirect()
-                .check(RegistrationConfirmationAssertion.class)
+                .check(new RegistrationConfirmationAssertion())
                     .assertThatWelcomeTextForUserIsPresent(user);
     }
 
@@ -44,7 +44,7 @@ public class RegisterTest extends SeleniumTest {
                 .enterPassword(user.getPassword())
                 .enterPasswordAgain("differentPass")
                 .clickRegister()
-                .check(RegisterAssertion.class)
+                .check(new RegisterAssertion())
                 .assertThatPassValidationTextIsPresent();
     }
 
@@ -58,8 +58,7 @@ public class RegisterTest extends SeleniumTest {
                 .clickRegisterLink()
                     .run(new FillRegisterWithCorrectUserScenario(user))
                 .clickRegister()
-                .check(RegisterAssertion.class)
+                .check(new RegisterAssertion())
                 .assertThatUserValidationTextIsPresent();
     }
 }
-

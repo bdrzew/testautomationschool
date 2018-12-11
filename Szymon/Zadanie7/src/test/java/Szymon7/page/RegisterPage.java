@@ -1,13 +1,13 @@
 package Szymon7.page;
 
-import Szymon7.User;
+import Szymon7.page.common.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static org.testng.Assert.assertEquals;
 
-public class RegisterPage extends LeftNavigationMenu {
+public class RegisterPage extends Page {
 
     @FindBy(id = "customer.firstName")
     private WebElement firstNameField;
