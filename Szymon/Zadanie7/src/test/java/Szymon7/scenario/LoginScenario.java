@@ -12,10 +12,10 @@ public class LoginScenario implements Scenario<CustomerLoginPage, CustomerLoginP
     }
 
     @Override
-    public CustomerLoginPage run(CustomerLoginPage customerLoginPage ) {
+    public CustomerLoginPage run(CustomerLoginPage customerLoginPage, User user) {
         return customerLoginPage
-                .enterUsername(user.getUsername())
-                .enterPassword(user.getPassword())
+                .enterUsername(this.user.getUsername())
+                .enterPassword(this.user.getPassword())
                 .clickLogIn();
     }
 }

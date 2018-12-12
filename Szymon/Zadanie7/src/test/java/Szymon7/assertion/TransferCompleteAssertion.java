@@ -1,7 +1,7 @@
 package Szymon7.assertion;
 
 import Szymon7.assertion.common.Assertion;
-import Szymon7.page.TransferCompletePage;
+import Szymon7.page.accountServicesPage.TransferCompletePage;
 
 import static org.testng.Assert.assertEquals;
 

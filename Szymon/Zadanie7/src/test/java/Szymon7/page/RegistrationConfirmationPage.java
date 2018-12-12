@@ -22,9 +22,6 @@ public class RegistrationConfirmationPage extends CustomerLoginPage {
     public WelcomePage clickLogout() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(logoutLink)).click();
-        // mam tu problem, jak puszczam wszystkie testy to nie przechodzi
-        // a jak jeden to zawsze dziala :|
-        // Bartku, jak żyć?
         return new WelcomePage(driver);
     }
 

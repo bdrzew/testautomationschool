@@ -1,5 +1,6 @@
 package Szymon7.page.common;
 
+import Szymon7.User;
 import Szymon7.assertion.common.Assertion;
 import Szymon7.scenario.common.Scenario;
 import org.openqa.selenium.WebDriver;
@@ -18,8 +19,8 @@ public abstract class Page {
             return assertion;
     }
 
-    public <Input extends Page, Output extends Page> Output run(Scenario<Input, Output> scenario) {
-        return scenario.run((Input) this);
+    public <Input extends Page, Output extends Page> Output run(Scenario<Input, Output> scenario, User user) {
+        return scenario.run((Input) this, user);
     }
 
     public WebDriver getDriver() {

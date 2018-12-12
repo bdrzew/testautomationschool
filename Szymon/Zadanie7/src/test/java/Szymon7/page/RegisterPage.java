@@ -83,8 +83,8 @@ public class RegisterPage extends Page {
         return this;
     }
 
-    public RegisterPage enterUsername(String user) {
-        usernameField.sendKeys(user);
+    public RegisterPage enterUsername(String usernm) {
+        usernameField.sendKeys(usernm);
         return this;
 
     }

@@ -5,7 +5,7 @@ import Szymon7.assertion.RegisterAssertion;
 import Szymon7.assertion.RegistrationConfirmationAssertion;
 import Szymon7.scenario.FillRegisterWithCorrectUserScenario;
 import Szymon7.test.common.SeleniumTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import Szymon7.page.WelcomePage;
 
@@ -13,16 +13,16 @@ public class RegisterTest extends SeleniumTest {
 
     private User user = new User();
 
-    @BeforeTest
+    @BeforeMethod
     public void eachTestSetup(){
         user.setUsername();
     }
 
     @Test
     public void successfulRegistrationTest(){
-        new WelcomePage(driver, "http://parabank.parasoft.com")
+        new WelcomePage(driver, "http://parabank.parasoft.com", user)
                 .clickRegisterLink()
-                    .run(new FillRegisterWithCorrectUserScenario(user))
+                    .run(new FillRegisterWithCorrectUserScenario(user), user)
                 .clickRegisterAndRedirect()
                 .check(new RegistrationConfirmationAssertion())
                     .assertThatWelcomeTextForUserIsPresent(user);
@@ -30,7 +30,7 @@ public class RegisterTest extends SeleniumTest {
 
     @Test
     public void wrongPasswordRepeatedTest(){
-        new WelcomePage (driver, "http://parabank.parasoft.com")
+        new WelcomePage (driver, "http://parabank.parasoft.com", user)
                 .clickRegisterLink()
                 .enterFirstName(user.getFirstName())
                 .enterLastName(user.getLastName())
@@ -50,13 +50,13 @@ public class RegisterTest extends SeleniumTest {
 
     @Test
     public void userAlreadyExistsTest(){
-        new WelcomePage (driver, "http://parabank.parasoft.com")
+        new WelcomePage (driver, "http://parabank.parasoft.com", user)
                 .clickRegisterLink()
-                    .run(new FillRegisterWithCorrectUserScenario(user))
+                    .run(new FillRegisterWithCorrectUserScenario(user), user)
                 .clickRegisterAndRedirect()
                 .clickLogout()
                 .clickRegisterLink()
-                    .run(new FillRegisterWithCorrectUserScenario(user))
+                    .run(new FillRegisterWithCorrectUserScenario(user), user)
                 .clickRegister()
                 .check(new RegisterAssertion())
                 .assertThatUserValidationTextIsPresent();

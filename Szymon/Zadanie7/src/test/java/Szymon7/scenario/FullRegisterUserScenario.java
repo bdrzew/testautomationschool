@@ -3,20 +3,17 @@ package Szymon7.scenario;
 import Szymon7.User;
 import Szymon7.page.WelcomePage;
 import Szymon7.scenario.common.Scenario;
-import org.openqa.selenium.WebDriver;
 
 public class FullRegisterUserScenario implements Scenario <WelcomePage, WelcomePage> {
 
-    private WebDriver driver;
-    private User user = new User();
+//    private User user = new User();
 
     @Override
-    public WelcomePage run(WelcomePage welcomePage) {
-        new WelcomePage(driver, "http://parabank.parasoft.com")
+    public WelcomePage run(WelcomePage welcomePage, User user) {
+        return welcomePage
                 .clickRegisterLink()
-                .run(new FillRegisterWithCorrectUserScenario(user))
+                .run(new FillRegisterWithCorrectUserScenario(user), user)
                 .clickRegisterAndRedirect()
                 .clickLogout();
-        return welcomePage;
     }
 }
