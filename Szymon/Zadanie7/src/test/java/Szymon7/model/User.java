@@ -1,4 +1,4 @@
-package Szymon7;
+package Szymon7.model;
 
 import org.apache.commons.lang3.RandomStringUtils;
 

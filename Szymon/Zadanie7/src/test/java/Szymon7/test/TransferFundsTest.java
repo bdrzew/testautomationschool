@@ -1,6 +1,6 @@
 package Szymon7.test;
 
-import Szymon7.User;
+import Szymon7.model.User;
 import Szymon7.assertion.TransferCompleteAssertion;
 import Szymon7.page.accountServicesPage.AccountServicesPage;
 import Szymon7.page.WelcomePage;
@@ -24,10 +24,9 @@ public class TransferFundsTest extends SeleniumTest {
 
     @Test
     public void transferFundsTest (){
-        Integer amount = 666;
         new AccountServicesPage(driver)
             .clickTransferFundsLink()
-            .enterAmountToTransfer(amount)
+            .enterAmountToTransfer(666)
             .clickTransferButtonAndRedirect()
         .check(new TransferCompleteAssertion())
             .assertThatConfirmationTextIsPresent();

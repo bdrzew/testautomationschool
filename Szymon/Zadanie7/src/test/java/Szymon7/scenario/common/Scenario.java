@@ -1,6 +1,6 @@
 package Szymon7.scenario.common;
 
-import Szymon7.User;
+import Szymon7.model.User;
 import Szymon7.page.common.Page;
 
 /**
@@ -8,5 +8,5 @@ import Szymon7.page.common.Page;
  * shortcuts in test setup, but not to replace test logic
  */
 public interface Scenario<Input extends Page, Output extends Page> {
-    Output run(Input entry, User user);
+    Output run(Input entry);
 }

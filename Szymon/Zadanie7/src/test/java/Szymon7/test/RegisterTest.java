@@ -1,6 +1,6 @@
 package Szymon7.test;
 
-import Szymon7.User;
+import Szymon7.model.User;
 import Szymon7.assertion.RegisterAssertion;
 import Szymon7.assertion.RegistrationConfirmationAssertion;
 import Szymon7.scenario.FillRegisterWithCorrectUserScenario;

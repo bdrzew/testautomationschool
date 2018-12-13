@@ -1,6 +1,6 @@
 package Szymon7.scenario;
 
-import Szymon7.User;
+import Szymon7.model.User;
 import Szymon7.page.CustomerLoginPage;
 import Szymon7.scenario.common.Scenario;
 

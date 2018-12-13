@@ -1,6 +1,6 @@
 package Szymon7.page;
 
-import Szymon7.User;
+import Szymon7.model.User;
 import org.openqa.selenium.WebDriver;
 
 public class WelcomePage extends CustomerLoginPage {
