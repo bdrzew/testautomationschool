@@ -1,7 +1,7 @@
-package test.automation.school.assertion.common;
+package zadanie10.assertion.common;
 
 
-import test.automation.school.page.common.Page;
+import zadanie10.page.common.Page;
 
 /**
  * Abstract assertions class

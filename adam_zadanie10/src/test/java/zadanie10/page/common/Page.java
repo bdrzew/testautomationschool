@@ -1,14 +1,11 @@
-package test.automation.school.page.common;
+package zadanie10.page.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import test.automation.school.assertion.common.Assertion;
-import test.automation.school.scenario.common.Scenario;
+import zadanie10.scenario.common.Scenario;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public abstract class Page {
     protected WebDriver driver;
@@ -27,7 +24,7 @@ public abstract class Page {
         return scenario.run((Input) this);
     }
 
-    public <T> T waitUntil(ExpectedCondition<T> expectedCondition) {
+/*    public <T> T waitUntil(ExpectedCondition<T> expectedCondition) {
         return waitUntil(expectedCondition, 10);
     }
 
@@ -35,7 +32,7 @@ public abstract class Page {
         return new WebDriverWait(driver, timeoutSeconds)
                 .pollingEvery(Duration.ofMillis(100))
                 .until(expectedCondition);
-    }
+    }*/
 
     public WebDriver getDriver() {
         return driver;
