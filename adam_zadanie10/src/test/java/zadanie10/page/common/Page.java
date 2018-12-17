@@ -2,10 +2,8 @@ package zadanie10.page.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import zadanie10.assertion.common.Assertion;
 import zadanie10.scenario.common.Scenario;
-
 
 public abstract class Page {
     protected WebDriver driver;
@@ -24,17 +22,9 @@ public abstract class Page {
         return scenario.run((Input) this);
     }
 
-/*    public <T> T waitUntil(ExpectedCondition<T> expectedCondition) {
-        return waitUntil(expectedCondition, 10);
-    }
-
-    public <T> T waitUntil(ExpectedCondition<T> expectedCondition, int timeoutSeconds) {
-        return new WebDriverWait(driver, timeoutSeconds)
-                .pollingEvery(Duration.ofMillis(100))
-                .until(expectedCondition);
-    }*/
-
     public WebDriver getDriver() {
         return driver;
     }
+
+
 }
