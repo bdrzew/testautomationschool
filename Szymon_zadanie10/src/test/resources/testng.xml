@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<!--<suite verbose="0" name="Automationpractice suite">-->
+    <!--<parameter name="url" value="http://automationpractice.com"/>-->
+    <!--<test thread-count="5" verbose="0" name="Automationpractice smoke tests" parallel="classes">-->
+        <!--<classes>-->
+            <!--<class name="test.automation.school.test.BlazedemoAssertionTest"/>-->
+            <!--<class name="test.automation.school.test.BlazedemoScenarioAndDataProviderTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+<!--</suite>-->

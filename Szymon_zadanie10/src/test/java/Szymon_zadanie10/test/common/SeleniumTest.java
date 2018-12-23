@@ -7,7 +7,9 @@ import Szymon_zadanie10.config.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
+/*
+DO NOT MODIFY THIS CLASS
+ */
 public abstract class SeleniumTest {
     protected WebDriver driver;
     private WebDriverFactory webDriverFactory = getWebDriverFactory();

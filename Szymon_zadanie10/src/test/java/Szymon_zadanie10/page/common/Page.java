@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-
+/*
+DO NOT MODIFY THIS CLASS
+ */
 public abstract class Page {
     protected WebDriver driver;
 
