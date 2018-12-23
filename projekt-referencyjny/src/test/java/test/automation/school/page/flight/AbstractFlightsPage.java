@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import test.automation.school.page.common.Page;
 import test.automation.school.page.flight.component.HeaderComponent;
 
-public class AbstractFlightsPage extends Page {
+public abstract class AbstractFlightsPage extends Page {
 
     private HeaderComponent header;
 
