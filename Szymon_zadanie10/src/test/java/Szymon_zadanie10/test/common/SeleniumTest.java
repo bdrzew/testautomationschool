@@ -4,12 +4,10 @@ import Szymon_zadanie10.config.DriverType;
 import Szymon_zadanie10.config.LocalWebDriverFactory;
 import Szymon_zadanie10.config.RemoteWebDriverFactory;
 import Szymon_zadanie10.config.WebDriverFactory;
+import org.fluttercode.datafactory.impl.DataFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-/*
-DO NOT MODIFY THIS CLASS
- */
 public abstract class SeleniumTest {
     protected WebDriver driver;
     private WebDriverFactory webDriverFactory = getWebDriverFactory();

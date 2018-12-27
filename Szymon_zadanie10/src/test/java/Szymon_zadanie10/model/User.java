@@ -1,6 +1,7 @@
 package Szymon_zadanie10.model;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.fluttercode.datafactory.impl.DataFactory;
 
 public class User {
     private String email; //TODO: zaciągać userów z zewnętrznej biblioteki
@@ -16,13 +17,33 @@ public class User {
     private String zipCode = "34400";
     private String mobilePhone = "111333444";
 
-    public String getEmail() {
-        return email;
+    public void setRandomEmail() {
+
     }
 
-    public void setRandomEmail() {
+    public void generateUser() {
+        DataFactory df = new DataFactory();
         String randomString = RandomStringUtils.randomAlphanumeric(5);
-        this.email = randomString+"@wp.pl";
+
+        this.firstName = df.getFirstName();
+        this.lastName = df.getLastName();
+        this.email = randomString+df.getEmailAddress();
+        this.password = df.getRandomChars(10);
+        this.dateOfBirthDay = Integer.toString(df.getNumberUpTo(28));
+        this.dateOfBirthMonth = Integer.toString(df.getNumberUpTo(12));
+        this.dateOfBirthYear = Integer.toString(df.getNumberBetween(1900,2000));
+        this.addressStreet = df.getAddress();
+        this.city = df.getCity();
+        this.state = Integer.toString(df.getNumberBetween(1,50));
+        this.zipCode = Integer.toString(df.getNumberBetween(10000,99999));
+        this.mobilePhone = Integer.toString(df.getNumberBetween(111111111,999999999));
+
+        String name = df.getFirstName() + " "+ df.getLastName();
+        System.out.println(name);
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getFirstName() {
