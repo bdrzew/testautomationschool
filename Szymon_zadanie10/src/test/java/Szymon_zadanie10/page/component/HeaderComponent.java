@@ -10,8 +10,10 @@ import org.openqa.selenium.support.FindBy;
 public class HeaderComponent extends Component {
     @FindBy(xpath = ".//div[@class='header_user_info']/a[@class='login']")
     private WebElement SignIn;
-    @FindBy(xpath = ".//div[@class='header_user_info']/a[@class='logout']\n")
+    @FindBy(xpath = ".//div[@class='header_user_info']/a[@class='logout']")
     private WebElement SignOut;
+    @FindBy(xpath =  "//div[@class='header_user_info']/a[@class='account']/span")
+    private WebElement firstAndLastNameField;
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
@@ -25,5 +27,9 @@ public class HeaderComponent extends Component {
     public AuthenticationPage clickSignOut() {
         SignOut.click();
         return new AuthenticationPage(driver);
+    }
+
+    public WebElement getFirstAndLastNameField() {
+        return firstAndLastNameField;
     }
 }

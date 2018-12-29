@@ -8,6 +8,7 @@ public class temp {
     public void temp() {
         DataFactory df = new DataFactory();
         for (int i = 0; i < 2; i++) {
+            df.randomize((int) System.currentTimeMillis());
             String name = df.getEmailAddress() + "2 " + df.getAddressLine2()+"3 " + df.getAddressLine2(5)+"4 " + df.getAddressLine2(10, "stringDefaultValue");
             System.out.println(name);
         }

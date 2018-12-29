@@ -6,8 +6,13 @@ import Szymon_zadanie10.page.AuthenticationPage;
 import static org.testng.Assert.assertEquals;
 
 public class AuthenticationPageAssertion extends Assertion <AuthenticationPage> {
-    public AuthenticationPageAssertion verifyTextPresent(String textToVerify) {
-        assertEquals(page.getValidatorField().getText(), textToVerify);
+    public AuthenticationPageAssertion verifyTextPresentInCreateErrorField(String textToVerify) {
+        assertEquals(page.getCreateErrorField().getText(), textToVerify);
+        return this;
+    }
+
+    public AuthenticationPageAssertion verifyTextPresentInSignInErrorField(String textToVerify) {
+        assertEquals(page.getSignInErrorField().getText(), textToVerify);
         return this;
     }
 }

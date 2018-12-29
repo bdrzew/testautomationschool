@@ -24,10 +24,12 @@ public class User {
     public void generateUser() {
         DataFactory df = new DataFactory();
         String randomString = RandomStringUtils.randomAlphanumeric(5);
+        df.randomize((int) System.currentTimeMillis());
 
         this.firstName = df.getFirstName();
         this.lastName = df.getLastName();
-        this.email = randomString+df.getEmailAddress();
+//        this.email = randomString+df.getEmailAddress();
+        this.email = df.getEmailAddress();
         this.password = df.getRandomChars(10);
         this.dateOfBirthDay = Integer.toString(df.getNumberUpTo(28));
         this.dateOfBirthMonth = Integer.toString(df.getNumberUpTo(12));

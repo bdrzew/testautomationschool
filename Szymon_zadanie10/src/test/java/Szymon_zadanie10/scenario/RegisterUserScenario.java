@@ -19,7 +19,7 @@ public class RegisterUserScenario implements Scenario<FirstPage, MyAccountPage> 
                 .getHeaderComponent()
                 .clickSignIn()
                 .enterEmailCreate(this.user.getEmail())
-                .clickCreateAnAccountButton()
+                .clickCreateAnAccountButton(false)
                 .selectTitleMr()
                 .enterFirstName(this.user.getFirstName())
                 .enterLastName(this.user.getLastName())
