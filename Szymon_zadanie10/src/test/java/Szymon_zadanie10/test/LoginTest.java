@@ -35,7 +35,7 @@ public class LoginTest extends SeleniumTest {
                     .clickSignIn()
                     .enterEmailToSignIn(user.getEmail())
                     .enterPasswordToSignIn(user.getPassword())
-                    .clickSignIn(false)
+                    .clickSignInAndRedirect()
                     .getHeaderComponent()
                 .check(new HeaderComponentAssertion())
                     .verifyLoggedInUserByName(user.getFirstName()+" "+user.getLastName());
@@ -48,7 +48,7 @@ public class LoginTest extends SeleniumTest {
                     .clickSignIn()
                     .enterEmailToSignIn(user.getEmail())
                     .enterPasswordToSignIn("wrongPassword")
-                    .clickSignIn(true)
+                    .clickSignInNoRedirect()
                 .check(new AuthenticationPageAssertion())
                     .verifyTextPresentInSignInErrorField("Authentication failed.");
     }

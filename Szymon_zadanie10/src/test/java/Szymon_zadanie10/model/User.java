@@ -31,8 +31,8 @@ public class User {
 //        this.email = randomString+df.getEmailAddress();
         this.email = df.getEmailAddress();
         this.password = df.getRandomChars(10);
-        this.dateOfBirthDay = Integer.toString(df.getNumberUpTo(28));
-        this.dateOfBirthMonth = Integer.toString(df.getNumberUpTo(12));
+        this.dateOfBirthDay = Integer.toString(df.getNumberBetween(1,28));
+        this.dateOfBirthMonth = Integer.toString(df.getNumberBetween(1,12));
         this.dateOfBirthYear = Integer.toString(df.getNumberBetween(1900,2000));
         this.addressStreet = df.getAddress();
         this.city = df.getCity();

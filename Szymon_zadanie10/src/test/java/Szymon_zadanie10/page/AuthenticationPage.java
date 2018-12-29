@@ -4,16 +4,20 @@ import Szymon_zadanie10.page.common.AbstractStorePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.swing.*;
+import java.util.List;
 
 public class AuthenticationPage extends AbstractStorePage {
     @FindBy (id = "email_create")
     private WebElement emailCreateField;
     @FindBy (id = "SubmitCreate")
     private WebElement createAnAccountButton;
-    @FindBy (id = "//div[@id='create_account_error']")
+    @FindBy (xpath = "//div[@id='create_account_error'][@style='display: block;']")
     private WebElement createErrorField;
+    @FindBy (xpath = "//div[@id='create_account_error'][@style='display: block;']")
+    private List<WebElement> errorList;
     @FindBy (id = "email")
     private WebElement emailToSignInField;
     @FindBy (id = "passwd")
@@ -22,6 +26,7 @@ public class AuthenticationPage extends AbstractStorePage {
     private WebElement signInButton;
     @FindBy (xpath = "//p[contains(text(),'There is 1 error')]/../ol")
     private WebElement signInErrorField;
+
 
     public AuthenticationPage(WebDriver driver) {
         super(driver);
@@ -32,9 +37,12 @@ public class AuthenticationPage extends AbstractStorePage {
         return this;
     }
 
-
+    public List<WebElement> getErrorList(){
+        return errorList;
+    }
 
     public WebElement getCreateErrorField() {
+        waitUntil((condition -> !getErrorList().isEmpty()),5);
         return createErrorField;
     }
 
@@ -45,34 +53,29 @@ public class AuthenticationPage extends AbstractStorePage {
 
     public AuthenticationPage enterPasswordToSignIn(String password) {
         PasswordToSignInField.sendKeys(password);
-        return this;    
-    }
-
-    public AbstractStorePage clickCreateAnAccountButton(boolean shouldThereBeError) {
-        createAnAccountButton.click();
-        AbstractStorePage page;
-        if (!shouldThereBeError) {
-            page = new AccountCreationFormPage(driver);
-        }
-        else {
-            page = this;
-        }
-        return page;
-    }
-
-    public AbstractStorePage clickSignIn(boolean shouldThereBeError) {
-        signInButton.click();
-        AbstractStorePage page;
-        if (!shouldThereBeError) {
-            page = new MyAccountPage(driver);
-        }
-        else {
-            page = this;
-        }
-        return page;
+        return this;
     }
 
     public WebElement getSignInErrorField() {
         return signInErrorField;
+    }
+
+    public AccountCreationFormPage clickCreateAnAccountButtonAndRedirect() {
+        createAnAccountButton.click();
+        return new AccountCreationFormPage(driver);
+    }
+    public AuthenticationPage clickCreateAnAccountButtonNoRedirect() {
+        createAnAccountButton.click();
+        return this;
+    }
+
+    public MyAccountPage clickSignInAndRedirect() {
+        signInButton.click();
+        return new MyAccountPage(driver);
+    }
+
+    public AuthenticationPage clickSignInNoRedirect() {
+        signInButton.click();
+        return this;
     }
 }
