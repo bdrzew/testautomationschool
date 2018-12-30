@@ -32,6 +32,10 @@ public class LoginPage extends Page {
         return this;
     }
 
+    public LoginPage getEmail(){
+        return (LoginPage) email;
+    }
+
     public LoginPage(WebDriver driver, String url) {
         super(driver);
         driver.get(url);
