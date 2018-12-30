@@ -7,6 +7,7 @@ import static org.testng.Assert.assertEquals;
 
 public class AuthenticationPageAssertion extends Assertion <AuthenticationPage> {
     public AuthenticationPageAssertion verifyTextPresentInCreateErrorField(String textToVerify) {
+        page.waitUntil(p -> !page.getCreateErrorField().getText().isEmpty());
         assertEquals(page.getCreateErrorField().getText(), textToVerify);
         return this;
     }

@@ -6,7 +6,8 @@ public class WORK_LOG {
     1. szkic projektu - 2h?
     2. registerUserSuccessfullyTest, firstScenario- 23.12 start:   stop:
     3. Implement DataFactory to User and registerAlreadyRegisteredUserTest ~3h
-    4. 12:30 -
+    4. 12:30 - 18:30
+    5. 19:15 - 20:44
 
 
 

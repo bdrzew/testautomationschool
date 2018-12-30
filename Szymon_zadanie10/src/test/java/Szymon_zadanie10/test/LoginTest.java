@@ -6,15 +6,17 @@ import Szymon_zadanie10.model.User;
 import Szymon_zadanie10.page.FirstPage;
 import Szymon_zadanie10.scenario.RegisterUserScenario;
 import Szymon_zadanie10.test.common.SeleniumTest;
+import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginTest extends SeleniumTest {
 
     private User user = new User();
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void testClassSetup(){
         user.generateUser();
         driver.navigate().to("http://automationpractice.com");
@@ -22,10 +24,6 @@ public class LoginTest extends SeleniumTest {
                 .run(new RegisterUserScenario(user))
                 .getHeaderComponent()
                 .clickSignOut();
-    }
-    @BeforeMethod
-    public void testSetup (){
-//        driver.navigate().to("http://automationpractice.com"); //nie potrzebne gdy test zaczyna od getHeaderComponent
     }
 
     @Test

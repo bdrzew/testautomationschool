@@ -14,10 +14,8 @@ public class AuthenticationPage extends AbstractStorePage {
     private WebElement emailCreateField;
     @FindBy (id = "SubmitCreate")
     private WebElement createAnAccountButton;
-    @FindBy (xpath = "//div[@id='create_account_error'][@style='display: block;']")
+    @FindBy (xpath = "//div[@id='create_account_error']")
     private WebElement createErrorField;
-    @FindBy (xpath = "//div[@id='create_account_error'][@style='display: block;']")
-    private List<WebElement> errorList;
     @FindBy (id = "email")
     private WebElement emailToSignInField;
     @FindBy (id = "passwd")
@@ -36,13 +34,7 @@ public class AuthenticationPage extends AbstractStorePage {
         emailCreateField.sendKeys(email);
         return this;
     }
-
-    public List<WebElement> getErrorList(){
-        return errorList;
-    }
-
     public WebElement getCreateErrorField() {
-        waitUntil((condition -> !getErrorList().isEmpty()),5);
         return createErrorField;
     }
 

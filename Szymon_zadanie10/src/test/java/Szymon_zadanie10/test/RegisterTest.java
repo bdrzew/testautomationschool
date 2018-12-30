@@ -36,7 +36,7 @@ public class RegisterTest extends SeleniumTest {
                     .enterEmailCreate(this.user.getEmail())
                     .clickCreateAnAccountButtonNoRedirect()
                 .check(new AuthenticationPageAssertion())
-                    .verifyTextPresentInCreateErrorField("An account using this email address has already been registered. Please enter a valid password or request a new one. ");
+                    .verifyTextPresentInCreateErrorField("An account using this email address has already been registered. Please enter a valid password or request a new one.");
 
 
     }
