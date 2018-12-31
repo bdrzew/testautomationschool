@@ -1,11 +1,13 @@
 package Szymon_zadanie10.test;
 
-import Szymon_zadanie10.assertion.ContextMenuComponentAssertion;
+import Szymon_zadanie10.assertion.HeaderComponentAssertion;
 import Szymon_zadanie10.page.FirstPage;
-import Szymon_zadanie10.page.component.ContextMenuComponent;
 import Szymon_zadanie10.test.common.SeleniumTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class WebContentTest extends SeleniumTest {
 
@@ -19,13 +21,27 @@ public class WebContentTest extends SeleniumTest {
      sprawdzic czy w menu kontekstowych (header) pojawiaja sie poprawne kategorie (przyjac, ze ma byc tak jak sie wyswietla)
      */
     @Test
-    public void categoriesInHeaderCheckTest (){
+    public void mainCategoriesInHeaderCheckTest() {
+        List<String> mainCategories = Arrays.asList("WOMEN", "DRESSES", "T-SHIRTS");
 
-        new ContextMenuComponent(driver)
-                .check(new ContextMenuComponentAssertion())
-                    .verifyCategoriesInHeaderByTitle("Women", "Dresses", "T-shirts");
-        // nie wiem, próbowałem enuma, hashSet, liste. Nie wiem jak z tego korzystać. Za mało wiedzy o tych typach.
-        // Nie wiem jak przejść przez listę WebElementów, wyciągnąć z każdego atrybut, i po tym atrybucie wrzucić do asercji.
+        new FirstPage(driver)
+                .getHeaderComponent()
+                .check(new HeaderComponentAssertion())
+                .verifyMainCategories(mainCategories);
+    }
+
+    @Test
+    public void dressesCategoriesInHeaderCheckTest() {
+        List<String> dressesCategory = Arrays.asList("xxx", "yy");
+
+        new FirstPage(driver)
+                    .getHeaderComponent()
+                    .hoverOverDressesCategories()
+                .check(new HeaderComponentAssertion())
+                    .verifyDressesCategories(dressesCategory);
+
     }
 
 }
+
+
