@@ -1,15 +1,17 @@
 package Szymon_zadanie10.page.component;
 
-import Szymon_zadanie10.assertion.HeaderComponentAssertion;
 import Szymon_zadanie10.page.AuthenticationPage;
+import Szymon_zadanie10.page.FirstPage;
 import Szymon_zadanie10.page.common.Component;
+import Szymon_zadanie10.page.common.WomanCategoryPage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class HeaderComponent extends Component {
     @FindBy(xpath = ".//div[@class='header_user_info']/a[@class='login']")
@@ -20,10 +22,10 @@ public class HeaderComponent extends Component {
     private WebElement firstAndLastNameField;
     @FindBy(css = ".sf-menu>li>a")
     private List<WebElement> mainCategories;
-    @FindBy (css = ".sf-menu>li>ul")
-    private List<WebElement> dressesCategories;
-    @FindBy (xpath = "//body[@id='index']/div[@id='page']/div[@class='header-container']/header[@id='header']/div/div[@class='container']/div[@class='row']/div[@id='block_top_menu']/ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/li[2]/a[1]")
-    private WebElement dressesCategoriesField;
+    @FindBy (xpath = "//li[@class='sfHover']//ul[@class='submenu-container clearfix first-in-line-xs']/li/a")
+    private List<WebElement> dressesCategoriesList; //to do listy
+    @FindBy (xpath = "//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/li[2]/a[1]")
+    private WebElement dressesMainCategoryField; //to tylko do hovera
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
@@ -48,20 +50,38 @@ public class HeaderComponent extends Component {
         return mainCategories;
     }
 
-    public List<WebElement> getDressesCategories() {
-        return dressesCategories;
+    public List<WebElement> getDressesCategoriesList() {
+        waitUntil(p -> !dressesCategoriesList.isEmpty());
+        return dressesCategoriesList;
     }
 
-    public WebElement getDressesCategoriesField() {
-        return dressesCategoriesField;
+    public WebElement getDressesMainCategoryField() {
+        return dressesMainCategoryField;
     }
 
     public HeaderComponent hoverOverDressesCategories() {
         Actions action = new Actions(driver);
 
-        action.moveToElement(getDressesCategoriesField())
-                .pause(5000)
+        action.moveToElement(getDressesMainCategoryField())
                 .build().perform();
         return this;
+    }
+
+    protected WebElement findElementByText(List<WebElement> webElements, String text) {
+        return webElements
+                .stream()
+                .filter(webElement -> Objects.equals(webElement.getText(), text))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("No WebElement found containing " + text));
+    }
+
+    public HeaderComponent clickCategory(String category) {
+        findElementByText(mainCategories, category).click();
+        return this; //Haha ciekawe czy da się tu zrobić automatyczne przejście do Page taki jak category ;)
+    }
+
+
+    public WomanCategoryPage getWomanCategoryPage() {
+        return new WomanCategoryPage(driver);
     }
 }

@@ -4,10 +4,10 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.fluttercode.datafactory.impl.DataFactory;
 
 public class User {
-    private String email; //TODO: zaciągać userów z zewnętrznej biblioteki
+    private String email = "132@wp.pl"; //default user
     private String firstName = "Jan";
     private String lastName = "Nowak";
-    private String password = "randomPASS123";
+    private String password = "jsrsS5knwidzC2i";
     private String dateOfBirthDay = "5";
     private String dateOfBirthMonth = "2";
     private String dateOfBirthYear = "1986";
@@ -16,10 +16,6 @@ public class User {
     private String state = "1";
     private String zipCode = "34400";
     private String mobilePhone = "111333444";
-
-    public void setRandomEmail() {
-
-    }
 
     public void generateUser() {
         DataFactory df = new DataFactory();

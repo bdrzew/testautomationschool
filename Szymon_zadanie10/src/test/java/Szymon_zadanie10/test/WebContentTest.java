@@ -3,6 +3,7 @@ package Szymon_zadanie10.test;
 import Szymon_zadanie10.assertion.HeaderComponentAssertion;
 import Szymon_zadanie10.page.FirstPage;
 import Szymon_zadanie10.test.common.SeleniumTest;
+import Szymon_zadanie10.testData.CategoriesLists;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -17,29 +18,21 @@ public class WebContentTest extends SeleniumTest {
         new FirstPage(driver);
     }
 
-    /*
-     sprawdzic czy w menu kontekstowych (header) pojawiaja sie poprawne kategorie (przyjac, ze ma byc tak jak sie wyswietla)
-     */
     @Test
     public void mainCategoriesInHeaderCheckTest() {
-        List<String> mainCategories = Arrays.asList("WOMEN", "DRESSES", "T-SHIRTS");
-
         new FirstPage(driver)
                 .getHeaderComponent()
                 .check(new HeaderComponentAssertion())
-                .verifyMainCategories(mainCategories);
+                .verifyMainCategories(CategoriesLists.getMainCategories());
     }
 
     @Test
     public void dressesCategoriesInHeaderCheckTest() {
-        List<String> dressesCategory = Arrays.asList("xxx", "yy");
-
         new FirstPage(driver)
                     .getHeaderComponent()
                     .hoverOverDressesCategories()
                 .check(new HeaderComponentAssertion())
-                    .verifyDressesCategories(dressesCategory);
-
+                    .verifyDressesCategories(CategoriesLists.getDressesCategories());
     }
 
 }
