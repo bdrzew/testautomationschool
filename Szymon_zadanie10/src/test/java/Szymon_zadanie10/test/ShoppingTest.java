@@ -50,13 +50,16 @@ public class ShoppingTest extends SeleniumTest {
      dodac 3 produkty z 3 roznych kategorii, wejsc do koszyka (klikajac koszyk w headerze) i sprawdzic czy sa wszystkie produkty i czy poprawnie sie zsumowala cena
      */
     @Test
-    public void addItemsToCartAndValidateCartItemsAndPrice() {
+    public void addItemsToCartAndValidateCartItemsAndPriceTest() {
         driver.navigate().to("http://automationpractice.com");
         new FirstPage(driver)
                 .getHeaderComponent()
                 .clickCategory(CategoriesLists.getMainCategories().get(0))
-                .getWomanCategoryPage();
-//                .addToCart("Faded Short Sleeve T-shirts")
+                .getWomanCategoryPage()
+                .getProductOptionsComponent()
+                .addToCart("Faded Short Sleeve T-shirts")
+                .continueShopping()
+                .getWomanCategoryPage()
 
     }
 }
