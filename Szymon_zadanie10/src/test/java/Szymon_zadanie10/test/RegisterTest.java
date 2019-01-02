@@ -3,7 +3,7 @@ package Szymon_zadanie10.test;
 import Szymon_zadanie10.assertion.AuthenticationPageAssertion;
 import Szymon_zadanie10.assertion.PersonalInformationPageAssertion;
 import Szymon_zadanie10.model.User;
-import Szymon_zadanie10.page.FirstPage;
+import Szymon_zadanie10.page.firstPage.FirstPage;
 import Szymon_zadanie10.scenario.RegisterUserScenario;
 import Szymon_zadanie10.test.common.SeleniumTest;
 import org.testng.annotations.BeforeMethod;
@@ -37,7 +37,5 @@ public class RegisterTest extends SeleniumTest {
                     .clickCreateAnAccountButtonNoRedirect()
                 .check(new AuthenticationPageAssertion())
                     .verifyTextPresentInCreateErrorField("An account using this email address has already been registered. Please enter a valid password or request a new one.");
-
-
     }
 }

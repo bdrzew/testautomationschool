@@ -1,8 +1,8 @@
 package Szymon_zadanie10.scenario;
 
 import Szymon_zadanie10.model.User;
-import Szymon_zadanie10.page.MyAccountPage;
-import Szymon_zadanie10.page.FirstPage;
+import Szymon_zadanie10.page.accountRelated.MyAccountPage;
+import Szymon_zadanie10.page.firstPage.FirstPage;
 import Szymon_zadanie10.scenario.common.Scenario;
 
 public class RegisterUserScenario implements Scenario<FirstPage, MyAccountPage> {

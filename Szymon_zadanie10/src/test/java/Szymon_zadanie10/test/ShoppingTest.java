@@ -1,65 +1,92 @@
 package Szymon_zadanie10.test;
 
-import Szymon_zadanie10.assertion.FirstPageAssertion;
-import Szymon_zadanie10.model.User;
-import Szymon_zadanie10.page.FirstPage;
-import Szymon_zadanie10.scenario.RegisterUserScenario;
+import Szymon_zadanie10.assertion.BaseStorePageAssertion;
+import Szymon_zadanie10.assertion.ShoppingCartSummaryPageAssertion;
+import Szymon_zadanie10.page.firstPage.FirstPage;
 import Szymon_zadanie10.test.common.SeleniumTest;
 import Szymon_zadanie10.testData.CategoriesLists;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Sleeper;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShoppingTest extends SeleniumTest {
 
-    private User user = new User();
-
-    @BeforeClass
+    @BeforeMethod
     public void testClassSetup(){
-
-        //do debugu jest defaultowy user
-//        user.generateUser();
-//        driver.navigate().to("http://automationpractice.com");
-//        new FirstPage(driver)
-//                .run(new RegisterUserScenario(user));
+        driver.navigate().to("http://automationpractice.com");
     }
 
+    @AfterMethod
+    public void testTeardown(){
+        driver.manage().deleteAllCookies();
+    }
 
     /*
-    dodac 3 produkty ze strony startowej do koszyka i sprawdzic, ze odpowiednia ilosc produktow pojawia sie w koszyku (popup i header stony)
+    4. dodac 3 produkty ze strony startowej do koszyka i sprawdzic, ze odpowiednia ilosc produktow pojawia sie w koszyku (popup i header stony)
      */
     @Test
     public void addItemsToCartAndValidateQuantityTest (){
-        driver.navigate().to("http://automationpractice.com");
         new FirstPage(driver)
-                .getProductOptionsComponent()
                     .addToCart("Faded Short Sleeve T-shirts")
                     .continueShopping()
                     .addToCart("Blouse")
                     .continueShopping()
                     .addToCart("Printed Dress")
-                .check(new FirstPageAssertion())
+                .check(new BaseStorePageAssertion())
                     .verifyNumberOfItemsInPopup(3);
     }
 
     /*
-     dodac 3 produkty z 3 roznych kategorii, wejsc do koszyka (klikajac koszyk w headerze) i sprawdzic czy sa wszystkie produkty i czy poprawnie sie zsumowala cena
+     5. dodac 3 produkty z 3 roznych kategorii, wejsc do koszyka (klikajac koszyk w headerze) i sprawdzic czy sa wszystkie produkty i czy poprawnie sie zsumowala cena
      */
     @Test
-    public void addItemsToCartAndValidateCartItemsAndPriceTest() {
-        driver.navigate().to("http://automationpractice.com");
+    public void addItemsToCartAndValidateCartItemsAndTotalPriceTest() {
+        List<String> productsOnlyForThisTest = Arrays.asList("Printed Chiffon Dress", "Printed Summer Dress", "Faded Short Sleeve T-shirts");
+        List<Double> pricesOnlyForThisTest = Arrays.asList(16.40, 28.98, 16.51);
+        Double shippingPrice = 2.0;
+
         new FirstPage(driver)
                 .getHeaderComponent()
-                .clickCategory(CategoriesLists.getMainCategories().get(0))
+                    .clickCategory(CategoriesLists.getMainCategories().get(0))
                 .getWomanCategoryPage()
-                .getProductOptionsComponent()
-                .addToCart("Faded Short Sleeve T-shirts")
-                .continueShopping()
-                .getWomanCategoryPage()
-
+                    .addToCart(productsOnlyForThisTest.get(0))
+                    .continueShopping()
+                .getHeaderComponent()
+                    .clickCategory(CategoriesLists.getMainCategories().get(1))
+                .getDressesCategoryPage()
+                    .addToCart(productsOnlyForThisTest.get(1))
+                    .continueShopping()
+                .getHeaderComponent()
+                    .clickCategory(CategoriesLists.getMainCategories().get(2))
+                .getTShirtCategoryPage()
+                    .addToCart(productsOnlyForThisTest.get(2))
+                    .continueShopping()
+                .getHeaderComponent()
+                    .clickCartField()
+                .check(new ShoppingCartSummaryPageAssertion())
+                    .verifyProducts(productsOnlyForThisTest)
+                    .verifyTotalPrice(pricesOnlyForThisTest, shippingPrice);
     }
+
+    /*
+     6. wejsc w szczegoly produktu, kliknac '+' 5 razy i dodac do koszyka - sprawdzic w popupie poprawnosc danych
+     */
+    @Test
+    public void addItemsAndMultiplyAndValidate () {
+        new FirstPage(driver)
+                    .clickProductMoreButton("Blouse")
+                .getProductBlousePage()
+                    .increaseQuantity(5)
+                    .clickAddToCartButton()
+                .check(new BaseStorePageAssertion())
+                    .verifyNumberOfItemsInPopup(5);
+    }
+
+
+
+
+
 }

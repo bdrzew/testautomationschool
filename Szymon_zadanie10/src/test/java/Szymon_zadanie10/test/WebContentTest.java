@@ -1,23 +1,18 @@
 package Szymon_zadanie10.test;
 
 import Szymon_zadanie10.assertion.HeaderComponentAssertion;
-import Szymon_zadanie10.page.FirstPage;
+import Szymon_zadanie10.page.firstPage.FirstPage;
 import Szymon_zadanie10.test.common.SeleniumTest;
 import Szymon_zadanie10.testData.CategoriesLists;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class WebContentTest extends SeleniumTest {
 
-    @BeforeClass
-    public void testClassSetup() {
-        driver.navigate().to("http://automationpractice.com");
-        new FirstPage(driver);
-    }
 
+
+    /*
+      3. sprawdzic czy w menu kontekstowych (header) pojawiaja sie poprawne kategorie (przyjac, ze ma byc tak jak sie wyswietla)
+     */
     @Test
     public void mainCategoriesInHeaderCheckTest() {
         new FirstPage(driver)

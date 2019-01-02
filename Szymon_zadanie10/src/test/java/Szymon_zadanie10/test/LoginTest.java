@@ -3,13 +3,10 @@ package Szymon_zadanie10.test;
 import Szymon_zadanie10.assertion.AuthenticationPageAssertion;
 import Szymon_zadanie10.assertion.HeaderComponentAssertion;
 import Szymon_zadanie10.model.User;
-import Szymon_zadanie10.page.FirstPage;
+import Szymon_zadanie10.page.firstPage.FirstPage;
 import Szymon_zadanie10.scenario.RegisterUserScenario;
 import Szymon_zadanie10.test.common.SeleniumTest;
-import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginTest extends SeleniumTest {
@@ -19,13 +16,15 @@ public class LoginTest extends SeleniumTest {
     @BeforeClass(alwaysRun = true)
     public void testClassSetup(){
         user.generateUser();
-        driver.navigate().to("http://automationpractice.com");
         new FirstPage(driver)
                 .run(new RegisterUserScenario(user))
                 .getHeaderComponent()
                 .clickSignOut();
     }
 
+    /*
+     logowanie (po jednym pozytywnym i negatywnym przypadku) - sprawdzic nazwe uzytkownika w naglowku
+     */
     @Test
     public void LoginSuccessTest (){
         new FirstPage(driver)

@@ -1,13 +1,11 @@
-package Szymon_zadanie10.page;
+package Szymon_zadanie10.page.accountRelated;
 
-import Szymon_zadanie10.page.common.AbstractStorePage;
-import Szymon_zadanie10.page.common.Page;
+import Szymon_zadanie10.page.common.BaseStorePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.w3c.dom.html.HTMLInputElement;
 
-public class MyAccountPage extends AbstractStorePage {
+public class MyAccountPage extends BaseStorePage {
     @FindBy (xpath = "//a[@title='Information']")
     private WebElement myPersonalInformationButton;
 

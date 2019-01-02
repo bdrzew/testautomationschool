@@ -1,11 +1,11 @@
-package Szymon_zadanie10.page;
+package Szymon_zadanie10.page.accountRelated;
 
-import Szymon_zadanie10.page.common.AbstractStorePage;
+import Szymon_zadanie10.page.common.BaseStorePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PersonalInformationPage extends AbstractStorePage {
+public class PersonalInformationPage extends BaseStorePage {
     @FindBy (id = "email")
     private WebElement emailField;
 

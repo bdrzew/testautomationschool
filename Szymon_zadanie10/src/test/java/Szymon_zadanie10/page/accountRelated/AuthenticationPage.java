@@ -1,15 +1,11 @@
-package Szymon_zadanie10.page;
+package Szymon_zadanie10.page.accountRelated;
 
-import Szymon_zadanie10.page.common.AbstractStorePage;
+import Szymon_zadanie10.page.common.BaseStorePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
-import java.util.List;
-
-public class AuthenticationPage extends AbstractStorePage {
+public class AuthenticationPage extends BaseStorePage {
     @FindBy (id = "email_create")
     private WebElement emailCreateField;
     @FindBy (id = "SubmitCreate")

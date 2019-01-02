@@ -15,11 +15,6 @@ public class ContextMenuComponentAssertion extends Assertion <ContextMenuCompone
 
     public ContextMenuComponentAssertion verifyCategoriesInHeaderByTitle(String women, String dresses, String s) {
 
-//        assertEquals((page.getCategories()).getAttribute("title").toString().equals(women+dresses+tShirt));
-////        expected.length != allOptions.size()
-//        assertTrue(page.getCategories().toString().contains(women));
-////        assertEquals((page.getCategories()).getAttribute("title").toString().equals(women+dresses+tShirt));
-
         return this;
     }
 }

@@ -1,13 +1,12 @@
-package Szymon_zadanie10.page;
+package Szymon_zadanie10.page.accountRelated;
 
-import Szymon_zadanie10.page.common.AbstractStorePage;
-import Szymon_zadanie10.page.common.Page;
+import Szymon_zadanie10.page.common.BaseStorePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-public class AccountCreationFormPage extends AbstractStorePage {
+public class AccountCreationFormPage extends BaseStorePage {
     @FindBy (id = "id_gender1")
     private WebElement titleMrField;
     @FindBy (id = "customer_firstname")

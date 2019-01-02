@@ -41,5 +41,6 @@ public abstract class Page {
     public WebDriver getDriver() {
         return driver;
     }
+
 }
 

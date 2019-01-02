@@ -1,7 +1,7 @@
 package Szymon_zadanie10.assertion;
 
 import Szymon_zadanie10.assertion.common.Assertion;
-import Szymon_zadanie10.page.AuthenticationPage;
+import Szymon_zadanie10.page.accountRelated.AuthenticationPage;
 
 import static org.testng.Assert.assertEquals;
 
