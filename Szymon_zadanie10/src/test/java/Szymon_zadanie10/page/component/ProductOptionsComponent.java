@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /*
-możliwe że klasa nie potrzebna bo przeniosłem funkcjonalność do BaseStorePage
+przeniosłem funkcjonalność do BaseStorePage
  */
 public class ProductOptionsComponent extends Component {
     public ProductOptionsComponent(WebDriver driver) {

@@ -19,15 +19,15 @@ public class HeaderComponent extends Component {
     private WebElement SignIn;
     @FindBy(xpath = ".//div[@class='header_user_info']/a[@class='logout']")
     private WebElement SignOut;
-    @FindBy(xpath =  "//div[@class='header_user_info']/a[@class='account']/span")
+    @FindBy(xpath = "//div[@class='header_user_info']/a[@class='account']/span")
     private WebElement firstAndLastNameField;
     @FindBy(css = ".sf-menu>li>a")
     private List<WebElement> mainCategories;
-    @FindBy (xpath = "//li[@class='sfHover']//ul[@class='submenu-container clearfix first-in-line-xs']/li/a")
+    @FindBy(xpath = "//li[@class='sfHover']//ul[@class='submenu-container clearfix first-in-line-xs']/li/a")
     private List<WebElement> dressesCategoriesList; //to do listy
-    @FindBy (xpath = "//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/li[2]/a[1]")
+    @FindBy(xpath = "//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/li[2]/a[1]")
     private WebElement dressesMainCategoryField; //to tylko do hovera
-    @FindBy (xpath = "//b[contains(text(),'Cart')]")
+    @FindBy(xpath = "//b[contains(text(),'Cart')]")
     private WebElement cartField;
 
     public HeaderComponent(WebDriver driver) {

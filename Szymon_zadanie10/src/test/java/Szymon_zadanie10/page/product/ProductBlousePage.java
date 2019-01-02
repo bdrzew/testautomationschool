@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ProductBlousePage extends BaseStorePage {
-    @FindBy (xpath = ".//i[@class='icon-plus']")
+    @FindBy(xpath = ".//i[@class='icon-plus']")
     private WebElement increaseQuantityButton;
-    @FindBy (xpath = "//span[contains(text(),'Add to cart')]")
+    @FindBy(xpath = "//span[contains(text(),'Add to cart')]")
     private WebElement addToCartButton;
 
     public ProductBlousePage(WebDriver driver) {

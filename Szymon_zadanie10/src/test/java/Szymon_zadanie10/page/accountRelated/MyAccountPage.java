@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MyAccountPage extends BaseStorePage {
-    @FindBy (xpath = "//a[@title='Information']")
+    @FindBy(xpath = "//a[@title='Information']")
     private WebElement myPersonalInformationButton;
 
     public MyAccountPage(WebDriver driver) {

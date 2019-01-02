@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ShoppingCartSummaryPage extends BaseStorePage {
-    @FindBy (xpath = "//td[@class='cart_description']/p")
+    @FindBy(xpath = "//td[@class='cart_description']/p")
     private List<WebElement> dressesCategoriesList;
-    @FindBy (id = "total_price")
+    @FindBy(id = "total_price")
     private WebElement actualTotalPrice;
 
     public ShoppingCartSummaryPage(WebDriver driver) {

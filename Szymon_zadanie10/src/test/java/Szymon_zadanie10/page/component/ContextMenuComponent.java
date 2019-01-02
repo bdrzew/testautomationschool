@@ -12,22 +12,11 @@ import java.util.stream.Collectors;
 
 public class ContextMenuComponent extends Component {
 
-    @FindBy (xpath = "//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/li")
+    @FindBy(xpath = "//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/li")
     private WebElement categories;
 
     public ContextMenuComponent(WebDriver driver) {
         super(driver);
     }
 
-    public List<WebElement> getCategories() {
-        //var1
-        List<WebElement> allCategories = driver.findElements(By.xpath("//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/li"));
-
-        return allCategories;
-
-        //var2
-        //return driver.findElements(By.xpath("//ul[@class='sf-menu clearfix menu-content sf-js-enabled sf-arrows']/li"));
-        //var3
-        //        return categories;
-    }
 }

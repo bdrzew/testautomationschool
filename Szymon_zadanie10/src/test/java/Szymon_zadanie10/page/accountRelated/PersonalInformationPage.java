@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class PersonalInformationPage extends BaseStorePage {
-    @FindBy (id = "email")
+    @FindBy(id = "email")
     private WebElement emailField;
 
     public PersonalInformationPage(WebDriver driver) {

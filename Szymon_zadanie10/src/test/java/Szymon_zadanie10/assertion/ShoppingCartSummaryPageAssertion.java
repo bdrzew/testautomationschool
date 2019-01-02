@@ -20,12 +20,12 @@ public class ShoppingCartSummaryPageAssertion extends Assertion<ShoppingCartSumm
     }
 
     public ShoppingCartSummaryPageAssertion verifyTotalPrice(List<Double> pricesOnlyForThisTest, Double shippingPrice) {
-        Double sum = pricesOnlyForThisTest.stream().mapToDouble(d->d).sum();
+        Double sum = pricesOnlyForThisTest.stream().mapToDouble(d -> d).sum();
         double expectedTotalPrice = sum + shippingPrice;
 
         String actualTotalPrice = page.getActualTotalPrice().getText();
 
-        assertEquals(actualTotalPrice, "$"+Double.toString(expectedTotalPrice));
+        assertEquals(actualTotalPrice, "$" + Double.toString(expectedTotalPrice));
         return this;
     }
 }

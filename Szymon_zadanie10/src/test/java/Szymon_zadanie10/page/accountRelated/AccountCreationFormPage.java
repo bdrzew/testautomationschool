@@ -7,31 +7,31 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 public class AccountCreationFormPage extends BaseStorePage {
-    @FindBy (id = "id_gender1")
+    @FindBy(id = "id_gender1")
     private WebElement titleMrField;
-    @FindBy (id = "customer_firstname")
+    @FindBy(id = "customer_firstname")
     private WebElement firstNameField;
-    @FindBy (id = "customer_lastname")
+    @FindBy(id = "customer_lastname")
     private WebElement lastNameField;
-    @FindBy (id = "passwd")
+    @FindBy(id = "passwd")
     private WebElement enterPasswordField;
-    @FindBy (id = "days")
+    @FindBy(id = "days")
     private WebElement selectDateOfBirthDay;
-    @FindBy (id = "months")
+    @FindBy(id = "months")
     private WebElement selectDateOfBirthMonth;
-    @FindBy (id = "years")
+    @FindBy(id = "years")
     private WebElement selectDateOfBirthYear;
-    @FindBy (id = "address1")
+    @FindBy(id = "address1")
     private WebElement enterAddress;
-    @FindBy (id = "city")
+    @FindBy(id = "city")
     private WebElement enterCity;
-    @FindBy (id = "id_state")
+    @FindBy(id = "id_state")
     private WebElement selectState;
-    @FindBy (id = "postcode")
+    @FindBy(id = "postcode")
     private WebElement enterZipCode;
-    @FindBy (id = "phone_mobile")
+    @FindBy(id = "phone_mobile")
     private WebElement enterMobilePhone;
-    @FindBy (id = "submitAccount")
+    @FindBy(id = "submitAccount")
     private WebElement button;
 
     public AccountCreationFormPage(WebDriver driver) {
@@ -39,64 +39,65 @@ public class AccountCreationFormPage extends BaseStorePage {
     }
 
     public AccountCreationFormPage selectTitleMr() {
-        waitUntil(condition ->titleMrField.isDisplayed(),10);
+        waitUntil(condition -> titleMrField.isDisplayed(), 10);
         titleMrField.click();
         return this;
     }
 
-    public AccountCreationFormPage enterFirstName(String firstName){
+    public AccountCreationFormPage enterFirstName(String firstName) {
         firstNameField.sendKeys(firstName);
         return this;
     }
 
-    public AccountCreationFormPage enterLastName(String lastName){
+    public AccountCreationFormPage enterLastName(String lastName) {
         lastNameField.sendKeys(lastName);
         return this;
     }
 
-    public AccountCreationFormPage enterPassword(String password){
+    public AccountCreationFormPage enterPassword(String password) {
         enterPasswordField.sendKeys(password);
         return this;
     }
 
 
-    public AccountCreationFormPage selectDateOfBirthDay (String birthDay){
+    public AccountCreationFormPage selectDateOfBirthDay(String birthDay) {
         new Select(selectDateOfBirthDay).selectByValue(birthDay);
         return this;
     }
-    public AccountCreationFormPage selectDateOfBirthMonth (String birthMonth){
+
+    public AccountCreationFormPage selectDateOfBirthMonth(String birthMonth) {
         new Select(selectDateOfBirthMonth).selectByValue(birthMonth);
         return this;
     }
-    public AccountCreationFormPage selectDateOfBirthYear (String birthYear){
+
+    public AccountCreationFormPage selectDateOfBirthYear(String birthYear) {
         new Select(selectDateOfBirthYear).selectByValue(birthYear);
         return this;
     }
 
 
-
-    public AccountCreationFormPage enterAddress (String address){
+    public AccountCreationFormPage enterAddress(String address) {
         enterAddress.sendKeys(address);
-       return this;
+        return this;
     }
 
 
-    public AccountCreationFormPage enterCity (String city){
+    public AccountCreationFormPage enterCity(String city) {
         enterCity.sendKeys(city);
         return this;
     }
 
-    public AccountCreationFormPage selectState (String state){
+    public AccountCreationFormPage selectState(String state) {
         new Select(selectState).selectByValue(state);
         return this;
     }
 
-    public AccountCreationFormPage enterZipCode(String zipCode){
+    public AccountCreationFormPage enterZipCode(String zipCode) {
         enterZipCode.sendKeys(zipCode);
         return this;
     }
 
-    public AccountCreationFormPage enterMobilePhone(String MobilePhone){
+    public AccountCreationFormPage enterMobilePhone(String MobilePhone) {
         enterMobilePhone.sendKeys(MobilePhone);
         return this;
     }

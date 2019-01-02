@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
 /*
 DO NOT MODIFY THIS CLASS
  */
@@ -20,7 +21,7 @@ public abstract class Page {
     }
 
     public <G extends Page, T extends Assertion<G>> T check(T assertion) {
-        assertion.setPage((G)this);
+        assertion.setPage((G) this);
         return assertion;
     }
 

@@ -27,16 +27,16 @@ public class User {
 //        this.email = randomString+df.getEmailAddress();
         this.email = df.getEmailAddress();
         this.password = df.getRandomChars(10);
-        this.dateOfBirthDay = Integer.toString(df.getNumberBetween(1,28));
-        this.dateOfBirthMonth = Integer.toString(df.getNumberBetween(1,12));
-        this.dateOfBirthYear = Integer.toString(df.getNumberBetween(1900,2000));
+        this.dateOfBirthDay = Integer.toString(df.getNumberBetween(1, 28));
+        this.dateOfBirthMonth = Integer.toString(df.getNumberBetween(1, 12));
+        this.dateOfBirthYear = Integer.toString(df.getNumberBetween(1900, 2000));
         this.addressStreet = df.getAddress();
         this.city = df.getCity();
-        this.state = Integer.toString(df.getNumberBetween(1,50));
-        this.zipCode = Integer.toString(df.getNumberBetween(10000,99999));
-        this.mobilePhone = Integer.toString(df.getNumberBetween(111111111,999999999));
+        this.state = Integer.toString(df.getNumberBetween(1, 50));
+        this.zipCode = Integer.toString(df.getNumberBetween(10000, 99999));
+        this.mobilePhone = Integer.toString(df.getNumberBetween(111111111, 999999999));
 
-        String name = df.getFirstName() + " "+ df.getLastName();
+        String name = df.getFirstName() + " " + df.getLastName();
         System.out.println(name);
     }
 

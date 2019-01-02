@@ -1,6 +1,7 @@
 package Szymon_zadanie10.page.common;
 
 import org.openqa.selenium.WebDriver;
+
 /*
 DO NOT MODIFY THIS CLASS
  */

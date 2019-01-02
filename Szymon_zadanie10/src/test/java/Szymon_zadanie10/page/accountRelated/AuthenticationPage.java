@@ -6,19 +6,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class AuthenticationPage extends BaseStorePage {
-    @FindBy (id = "email_create")
+    @FindBy(id = "email_create")
     private WebElement emailCreateField;
-    @FindBy (id = "SubmitCreate")
+    @FindBy(id = "SubmitCreate")
     private WebElement createAnAccountButton;
-    @FindBy (xpath = "//div[@id='create_account_error']")
+    @FindBy(xpath = "//div[@id='create_account_error']")
     private WebElement createErrorField;
-    @FindBy (id = "email")
+    @FindBy(id = "email")
     private WebElement emailToSignInField;
-    @FindBy (id = "passwd")
+    @FindBy(id = "passwd")
     private WebElement PasswordToSignInField;
-    @FindBy (id = "SubmitLogin")
+    @FindBy(id = "SubmitLogin")
     private WebElement signInButton;
-    @FindBy (xpath = "//p[contains(text(),'There is 1 error')]/../ol")
+    @FindBy(xpath = "//p[contains(text(),'There is 1 error')]/../ol")
     private WebElement signInErrorField;
 
 
@@ -30,6 +30,7 @@ public class AuthenticationPage extends BaseStorePage {
         emailCreateField.sendKeys(email);
         return this;
     }
+
     public WebElement getCreateErrorField() {
         return createErrorField;
     }
@@ -52,6 +53,7 @@ public class AuthenticationPage extends BaseStorePage {
         createAnAccountButton.click();
         return new AccountCreationFormPage(driver);
     }
+
     public AuthenticationPage clickCreateAnAccountButtonNoRedirect() {
         createAnAccountButton.click();
         return this;

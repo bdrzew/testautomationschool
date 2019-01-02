@@ -24,7 +24,7 @@ public class BaseStorePage extends Page {
     private ContextMenuComponent contextMenuComponent;
     @FindBy(xpath = "//span[@title='Continue shopping']//span")
     private WebElement continueShoppingButton;
-    @FindBy (css = ".ajax_cart_quantity")
+    @FindBy(css = ".ajax_cart_quantity")
     private WebElement textNumberOfItemsInCartFromPopup;
 
     public BaseStorePage(WebDriver driver) {
@@ -35,7 +35,7 @@ public class BaseStorePage extends Page {
         contextMenuComponent = new ContextMenuComponent(driver);
     }
 
-    public HeaderComponent getHeaderComponent(){
+    public HeaderComponent getHeaderComponent() {
         return header;
     }
 
@@ -47,20 +47,21 @@ public class BaseStorePage extends Page {
         return addToCartPopUpComponent;
     }
 
-    public ContextMenuComponent getContextMenuComponent(){
+    public ContextMenuComponent getContextMenuComponent() {
         return contextMenuComponent;
     }
 
     public ProductBlousePage getProductBlousePage() {
         return new ProductBlousePage(driver);
     }
+
     public BaseStorePage continueShopping() {
         //Waiting for the popup to display
         //        waitUntil(p-> continueShoppingButton.isDisplayed()); < co tutaj trzeba zrobić żeby była dostępna metoda 'elementToBeClickable'
         WebDriverWait wait = new WebDriverWait(driver, 5);
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
-        waitUntil(p-> !continueShoppingButton.isDisplayed());
+        waitUntil(p -> !continueShoppingButton.isDisplayed());
         return new BaseStorePage(driver);
     }
 
@@ -93,7 +94,7 @@ public class BaseStorePage extends Page {
     }
 
     public BaseStorePage clickProductMoreButton(String productTitle) {
-        String xpathForProductMoreButton =  "//div[@itemscope][.//a[@title='" + productTitle + "']]//a/span[contains(text(),'More')]";
+        String xpathForProductMoreButton = "//div[@itemscope][.//a[@title='" + productTitle + "']]//a/span[contains(text(),'More')]";
         String xpathForProduct = "//div[@itemscope][.//a[@title='" + productTitle + "']]";
         Actions action = new Actions(driver);
 
@@ -105,7 +106,7 @@ public class BaseStorePage extends Page {
     }
 
     public WebElement getTextNumberOfItemsInCartFromPopup() {
-        waitUntil(p-> textNumberOfItemsInCartFromPopup.isDisplayed());
+        waitUntil(p -> textNumberOfItemsInCartFromPopup.isDisplayed());
         return textNumberOfItemsInCartFromPopup;
     }
 }
