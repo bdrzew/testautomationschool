@@ -14,12 +14,12 @@ import java.util.List;
 
 public class ShoppingTest extends SeleniumTest {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void testClassSetup(){
         driver.navigate().to("http://automationpractice.com");
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void testTeardown(){
         driver.manage().deleteAllCookies();
     }

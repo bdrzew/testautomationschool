@@ -6,13 +6,14 @@ import Szymon_zadanie10.model.User;
 import Szymon_zadanie10.page.firstPage.FirstPage;
 import Szymon_zadanie10.scenario.RegisterUserScenario;
 import Szymon_zadanie10.test.common.SeleniumTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RegisterTest extends SeleniumTest {
     private User user = new User();
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void testSetup() {
         driver.navigate().to("http://automationpractice.com");
         user.generateUser();

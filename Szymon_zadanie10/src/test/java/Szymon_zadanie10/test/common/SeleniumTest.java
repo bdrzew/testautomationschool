@@ -4,9 +4,11 @@ import Szymon_zadanie10.config.DriverType;
 import Szymon_zadanie10.config.LocalWebDriverFactory;
 import Szymon_zadanie10.config.RemoteWebDriverFactory;
 import Szymon_zadanie10.config.WebDriverFactory;
+import Szymon_zadanie10.page.firstPage.FirstPage;
 import org.fluttercode.datafactory.impl.DataFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 public abstract class SeleniumTest {
@@ -19,6 +21,16 @@ public abstract class SeleniumTest {
                 DriverType.valueOf(System.getProperty("driver", "chrome").toUpperCase()));
         driver.navigate().to("http://automationpractice.com");
 
+    }
+
+    @AfterMethod
+    public void testTearDown(){
+        try {
+            new FirstPage(driver)
+                    .getHeaderComponent()
+                    .clickSignOut();
+        } catch (Exception e) {
+        }
     }
 
     @AfterClass(alwaysRun = true)
