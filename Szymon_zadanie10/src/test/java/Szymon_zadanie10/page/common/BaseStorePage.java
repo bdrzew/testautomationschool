@@ -30,6 +30,9 @@ public class BaseStorePage extends Page {
     @FindBy (xpath = "//a[@title='Proceed to checkout']//span")
     private WebElement proceedToCheckout;
 
+    // Xpathy, jesli sa prametryzowane, to zrobmy z nich stałe
+    private final static String ADD_BUTTON_XPATH = "//div[@itemscope][.//a[@title='%s']]//a/span[contains(text(),'Add to cart')]";
+
     public BaseStorePage(WebDriver driver) {
         super(driver);
         header = new HeaderComponent(driver);
@@ -60,9 +63,7 @@ public class BaseStorePage extends Page {
 
     public BaseStorePage continueShopping() {
         //Waiting for the popup to display
-        //        waitUntil(p-> continueShoppingButton.isDisplayed()); < co tutaj trzeba zrobić żeby była dostępna metoda 'elementToBeClickable'
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+        waitUntil(ExpectedConditions.elementToBeClickable(continueShoppingButton));
         continueShoppingButton.click();
         waitUntil(p -> !continueShoppingButton.isDisplayed());
         return new BaseStorePage(driver);
@@ -72,16 +73,9 @@ public class BaseStorePage extends Page {
         return continueShoppingButton;
     }
 
-    public WebElement findElementByText(List<WebElement> webElements, String text) {
-        return webElements
-                .stream()
-                .filter(webElement -> Objects.equals(webElement.getText(), text))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("No WebElement found containing " + text));
-    }
-
     public BaseStorePage addToCart(String itemTitle) {
-        String xpathForItemAddButton = "//div[@itemscope][.//a[@title='" + itemTitle + "']]//a/span[contains(text(),'Add to cart')]";
+        //Xpathy, jesli sa prametryzowane, to zrobmy z nich stałe
+        //String xpathForItemAddButton = "//div[@itemscope][.//a[@title='" + itemTitle + "']]//a/span[contains(text(),'Add to cart')]";
         String xpathForItem = "//div[@itemscope][.//a[@title='" + itemTitle + "']]";
 
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -91,7 +85,7 @@ public class BaseStorePage extends Page {
         Actions action = new Actions(driver);
         WebElement we = driver.findElement(By.xpath(xpathForItem));
         action.moveToElement(we).moveToElement(driver.findElement(
-                By.xpath(xpathForItemAddButton)))
+                By.xpath(String.format(ADD_BUTTON_XPATH, itemTitle))))  //Xpathy, jesli sa prametryzowane, to zrobmy z nich stałe
                 .click().build().perform();
         return new BaseStorePage(driver);
     }

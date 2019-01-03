@@ -8,6 +8,7 @@ import Szymon_zadanie10.page.common.BaseStorePage;
 import Szymon_zadanie10.page.common.Component;
 import Szymon_zadanie10.page.accountRelated.AuthenticationPage;
 import Szymon_zadanie10.page.firstPage.FirstPage;
+import Szymon_zadanie10.utilities.Utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -74,7 +75,7 @@ public class HeaderComponent extends Component {
     }
 
     public HeaderComponent clickCategory(String category) {
-        BaseStorePage probablyCouldBeBetter = new BaseStorePage(driver);
+        Utilities probablyCouldBeBetter = new Utilities ();
         probablyCouldBeBetter.findElementByText(mainCategories, category).click();
         return this;
     }
