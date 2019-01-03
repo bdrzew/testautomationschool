@@ -1,8 +1,11 @@
 package Szymon_zadanie10.test;
 
 import Szymon_zadanie10.assertion.BaseStorePageAssertion;
+import Szymon_zadanie10.assertion.OrderConfirmationCheckoutStepPageAssertion;
 import Szymon_zadanie10.assertion.ShoppingCartSummaryPageAssertion;
+import Szymon_zadanie10.model.User;
 import Szymon_zadanie10.page.firstPage.FirstPage;
+import Szymon_zadanie10.scenario.SignInUserScenario;
 import Szymon_zadanie10.test.common.SeleniumTest;
 import Szymon_zadanie10.testData.CategoriesLists;
 import org.testng.annotations.AfterMethod;
@@ -13,6 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ShoppingTest extends SeleniumTest {
+
+    private User user = new User();
 
     @BeforeMethod(alwaysRun = true)
     public void testClassSetup(){
@@ -85,8 +90,23 @@ public class ShoppingTest extends SeleniumTest {
                     .verifyNumberOfItemsInPopup(5);
     }
 
-
-
-
-
+    /*
+     7. dokonac pelnego zakupu 1 produktu - sprawdzic, czy wyswietla sie podsumowanie zakupow z poprawnymi danymi
+     */
+    @Test
+    public void fullPurchaseProcess () {
+        new FirstPage(driver)
+                .run(new SignInUserScenario(user))
+                        .addToCart("Faded Short Sleeve T-shirts")
+                    .clickProceedToCheckoutOnPopup()
+                    .clickProceedToCheckoutOnSummary()
+                    .clickProceedToCheckoutOnAddress()
+                        .agreeToTermsOfService()
+                    .clickProceedToCheckoutOnShipping()
+                    .clickPayByBankWire()
+                    .clickIConfirmMyOrder()
+                .check(new OrderConfirmationCheckoutStepPageAssertion())
+                    .verifyAmount("$18.51")
+                    .verifyAccountOwner("Pradeep Macharla"); //zahardcodowane na stronie
+    }
 }

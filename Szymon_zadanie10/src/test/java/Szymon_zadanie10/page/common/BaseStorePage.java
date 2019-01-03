@@ -1,5 +1,6 @@
 package Szymon_zadanie10.page.common;
 
+import Szymon_zadanie10.page.checkout.ShoppingCartSummaryPage;
 import Szymon_zadanie10.page.product.ProductBlousePage;
 import Szymon_zadanie10.page.component.AddToCartPopUpComponent;
 import Szymon_zadanie10.page.component.ContextMenuComponent;
@@ -26,6 +27,8 @@ public class BaseStorePage extends Page {
     private WebElement continueShoppingButton;
     @FindBy(css = ".ajax_cart_quantity")
     private WebElement textNumberOfItemsInCartFromPopup;
+    @FindBy (xpath = "//a[@title='Proceed to checkout']//span")
+    private WebElement proceedToCheckout;
 
     public BaseStorePage(WebDriver driver) {
         super(driver);
@@ -108,5 +111,11 @@ public class BaseStorePage extends Page {
     public WebElement getTextNumberOfItemsInCartFromPopup() {
         waitUntil(p -> textNumberOfItemsInCartFromPopup.isDisplayed());
         return textNumberOfItemsInCartFromPopup;
+    }
+
+    public ShoppingCartSummaryPage clickProceedToCheckoutOnPopup() {
+        waitUntil(p -> proceedToCheckout.isDisplayed());
+        proceedToCheckout.click();
+        return new ShoppingCartSummaryPage(driver);
     }
 }

@@ -13,6 +13,8 @@ public class ShoppingCartSummaryPage extends BaseStorePage {
     private List<WebElement> dressesCategoriesList;
     @FindBy(id = "total_price")
     private WebElement actualTotalPrice;
+    @FindBy (xpath = "//p[@class='cart_navigation clearfix']//span")
+    private WebElement proceedToCheckout;
 
     public ShoppingCartSummaryPage(WebDriver driver) {
         super(driver);
@@ -26,5 +28,11 @@ public class ShoppingCartSummaryPage extends BaseStorePage {
 
     public WebElement getActualTotalPrice() {
         return actualTotalPrice;
+    }
+
+    public AddressCheckoutStepPage clickProceedToCheckoutOnSummary() {
+        waitUntil(p -> proceedToCheckout.isDisplayed());
+        proceedToCheckout.click();
+        return new AddressCheckoutStepPage(driver);
     }
 }

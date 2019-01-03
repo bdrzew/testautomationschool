@@ -7,6 +7,7 @@ import Szymon_zadanie10.page.checkout.ShoppingCartSummaryPage;
 import Szymon_zadanie10.page.common.BaseStorePage;
 import Szymon_zadanie10.page.common.Component;
 import Szymon_zadanie10.page.accountRelated.AuthenticationPage;
+import Szymon_zadanie10.page.firstPage.FirstPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -29,6 +30,8 @@ public class HeaderComponent extends Component {
     private WebElement dressesMainCategoryField; //to tylko do hovera
     @FindBy(xpath = "//b[contains(text(),'Cart')]")
     private WebElement cartField;
+    @FindBy (xpath = "//img[@class='logo img-responsive']")
+    private WebElement homePageLogo;
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
@@ -91,5 +94,10 @@ public class HeaderComponent extends Component {
     public ShoppingCartSummaryPage clickCartField() {
         cartField.click();
         return new ShoppingCartSummaryPage(driver);
+    }
+
+    public FirstPage clickHomePageLogo() {
+        homePageLogo.click();
+        return new FirstPage(driver);
     }
 }
