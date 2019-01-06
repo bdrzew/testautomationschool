@@ -11,7 +11,7 @@ import static org.testng.AssertJUnit.assertEquals;
 public class LoginAssertion extends Assertion<LoginPage> {
 
     public LoginAssertion IsLoginPageIsLoaded() {
-        page.waitUntil(ExpectedConditions.visibilityOfElementLocated(page.getEmail()));
+        page.waitUntil(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='email']")));
         return this;
     }
 }
