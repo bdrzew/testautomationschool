@@ -18,7 +18,7 @@ public abstract class SeleniumTest {
     @BeforeClass(alwaysRun = true)
     public void classSetup() {
         driver = webDriverFactory.getDriver(
-                DriverType.valueOf(System.getProperty("driver", "chrome").toUpperCase()));
+                DriverType.valueOf(System.getProperty("driver", "firefox").toUpperCase()));
         driver.navigate().to("http://automationpractice.com");
 
     }

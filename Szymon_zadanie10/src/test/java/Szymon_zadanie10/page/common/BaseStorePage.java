@@ -7,16 +7,12 @@ import Szymon_zadanie10.page.component.ContextMenuComponent;
 import Szymon_zadanie10.page.component.HeaderComponent;
 import Szymon_zadanie10.page.component.ProductOptionsComponent;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
-import java.util.Objects;
 
 public class BaseStorePage extends Page {
     private HeaderComponent header;
@@ -32,6 +28,9 @@ public class BaseStorePage extends Page {
 
     // Xpathy, jesli sa prametryzowane, to zrobmy z nich stałe
     private final static String ADD_BUTTON_XPATH = "//div[@itemscope][.//a[@title='%s']]//a/span[contains(text(),'Add to cart')]";
+    private final static String XPATH_FOR_ITEM = "//div[@itemscope][.//a[@title='%s']]";
+    private final static String XPATH_FOR_PRODUCT_MORE_BUTTON = "//div[@itemscope][.//a[@title='%s']]//a/span[contains(text(),'More')]";
+
 
     public BaseStorePage(WebDriver driver) {
         super(driver);
@@ -76,28 +75,25 @@ public class BaseStorePage extends Page {
     public BaseStorePage addToCart(String itemTitle) {
         //Xpathy, jesli sa prametryzowane, to zrobmy z nich stałe
         //String xpathForItemAddButton = "//div[@itemscope][.//a[@title='" + itemTitle + "']]//a/span[contains(text(),'Add to cart')]";
-        String xpathForItem = "//div[@itemscope][.//a[@title='" + itemTitle + "']]";
 
         WebDriverWait wait = new WebDriverWait(driver, 5);
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath(xpathForItem)));
+                By.xpath(String.format(XPATH_FOR_ITEM, itemTitle))));
 
         Actions action = new Actions(driver);
-        WebElement we = driver.findElement(By.xpath(xpathForItem));
+        WebElement we = driver.findElement(By.xpath(String.format(XPATH_FOR_ITEM, itemTitle)));
         action.moveToElement(we).moveToElement(driver.findElement(
                 By.xpath(String.format(ADD_BUTTON_XPATH, itemTitle))))  //Xpathy, jesli sa prametryzowane, to zrobmy z nich stałe
                 .click().build().perform();
         return new BaseStorePage(driver);
     }
 
-    public BaseStorePage clickProductMoreButton(String productTitle) {
-        String xpathForProductMoreButton = "//div[@itemscope][.//a[@title='" + productTitle + "']]//a/span[contains(text(),'More')]";
-        String xpathForProduct = "//div[@itemscope][.//a[@title='" + productTitle + "']]";
+    public BaseStorePage clickProductMoreButton(String itemTitle) {
         Actions action = new Actions(driver);
 
-        WebElement we = driver.findElement(By.xpath(xpathForProduct));
+        WebElement we = driver.findElement(By.xpath(String.format(XPATH_FOR_ITEM, itemTitle)));
         action.moveToElement(we).moveToElement(driver.findElement(
-                By.xpath(xpathForProductMoreButton)))
+                By.xpath(String.format(XPATH_FOR_PRODUCT_MORE_BUTTON, itemTitle))))
                 .click().build().perform();
         return this;
     }
