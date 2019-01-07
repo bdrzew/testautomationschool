@@ -6,7 +6,9 @@ import Szymon_zadanie10.page.component.AddToCartPopUpComponent;
 import Szymon_zadanie10.page.component.ContextMenuComponent;
 import Szymon_zadanie10.page.component.HeaderComponent;
 import Szymon_zadanie10.page.component.ProductOptionsComponent;
+import Szymon_zadanie10.utilities.Utilities;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -73,25 +75,25 @@ public class BaseStorePage extends Page {
     }
 
     public BaseStorePage addToCart(String itemTitle) {
-        //Xpathy, jesli sa prametryzowane, to zrobmy z nich stałe
-        //String xpathForItemAddButton = "//div[@itemscope][.//a[@title='" + itemTitle + "']]//a/span[contains(text(),'Add to cart')]";
-
         WebDriverWait wait = new WebDriverWait(driver, 5);
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath(String.format(XPATH_FOR_ITEM, itemTitle))));
+//        powyższe nie działa na Firefox, gdy zamienimy na poniższe
+//        waitUntil(ExpectedConditions.elementToBeClickable(By.id(String.format(XPATH_FOR_ITEM, itemTitle))));
 
         Actions action = new Actions(driver);
         WebElement we = driver.findElement(By.xpath(String.format(XPATH_FOR_ITEM, itemTitle)));
-        action.moveToElement(we).moveToElement(driver.findElement(
-                By.xpath(String.format(ADD_BUTTON_XPATH, itemTitle))))  //Xpathy, jesli sa prametryzowane, to zrobmy z nich stałe
-                .click().build().perform();
+
+        Utilities.javaScriptScroolView(driver, we);
+        action.moveToElement(we).moveToElement(driver.findElement(By.xpath(String.format(ADD_BUTTON_XPATH, itemTitle))))
+        .click().build().perform();
         return new BaseStorePage(driver);
     }
 
     public BaseStorePage clickProductMoreButton(String itemTitle) {
         Actions action = new Actions(driver);
-
         WebElement we = driver.findElement(By.xpath(String.format(XPATH_FOR_ITEM, itemTitle)));
+        Utilities.javaScriptScroolView(driver, we);
         action.moveToElement(we).moveToElement(driver.findElement(
                 By.xpath(String.format(XPATH_FOR_PRODUCT_MORE_BUTTON, itemTitle))))
                 .click().build().perform();
