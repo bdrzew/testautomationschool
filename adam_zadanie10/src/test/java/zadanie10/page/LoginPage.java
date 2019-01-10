@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import zadanie10.page.common.MainPage;
 import zadanie10.page.common.Page;
 
-public class LoginPage extends Page {
+public class LoginPage extends MainPage {
 
     @FindBy(xpath = "//input[@id='email']")
     private WebElement email;
@@ -36,8 +37,8 @@ public class LoginPage extends Page {
         return (LoginPage) email;
     }
 
-    public LoginPage(WebDriver driver, String url) {
+    public LoginPage(WebDriver driver) {
         super(driver);
-        driver.get(url);
+        //driver.get(url);
     }
 }
