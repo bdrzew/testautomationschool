@@ -6,6 +6,7 @@
         <classes>
             <class name="test.automation.school.test.BlazedemoAssertionTest"/>
             <class name="test.automation.school.test.BlazedemoScenarioAndDataProviderTest"/>
+            <class name="test.automation.school.test.BlazedemoComponentAndWaitTest"/>
         </classes>
     </test>
 </suite>

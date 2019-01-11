@@ -39,7 +39,7 @@ public class BlazedemoAssertionTest extends SeleniumTest
     @Test(groups = {"SMOKE"})
     public void airlinesTest() {
         new ChooseFlightPage(driver, url)
-                .run(new PickFlightScenario("Paris", "Buenos Aires"))
+                .run(new PickFlightScenario("Paris", "Bunos Aires"))
             .check(new FlightOptionsAssertion())
                 .verifyFlightNumberOrder(flightNumbersOrderVA)
                 .verifyFlightNumbersUnordered(flightNumbersUnordered);

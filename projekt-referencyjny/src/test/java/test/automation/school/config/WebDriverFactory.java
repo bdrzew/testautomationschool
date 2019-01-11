@@ -1,5 +1,6 @@
 package test.automation.school.config;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public abstract class WebDriverFactory {
@@ -17,6 +18,9 @@ public abstract class WebDriverFactory {
                 driver = getInternetExplorerDriver();
                 break;
         }
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("");
+        ((JavascriptExecutor) driver).executeAsyncScript("");
         driver.manage().window().maximize();
         return driver;
     }
