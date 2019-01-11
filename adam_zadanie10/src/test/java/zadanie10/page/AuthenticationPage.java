@@ -15,7 +15,6 @@ public class AuthenticationPage extends MainPage {
 
     public AuthenticationPage(WebDriver driver) {
         super(driver);
-
     }
 
     public AuthenticationPage enterEmailToLogin(String email) {
