@@ -18,9 +18,6 @@ public abstract class WebDriverFactory {
                 driver = getInternetExplorerDriver();
                 break;
         }
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("");
-        ((JavascriptExecutor) driver).executeAsyncScript("");
         driver.manage().window().maximize();
         return driver;
     }
