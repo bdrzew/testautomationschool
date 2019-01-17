@@ -1,7 +1,8 @@
 package zadanie10.assertion;
 
-import org.testng.asserts.Assertion;
+//import org.testng.asserts.Assertion;
 import zadanie10.page.AuthenticationPage;
+import zadanie10.assertion.common.*;
 import zadanie10.page.common.MainPage;
 
 import static org.testng.Assert.assertEquals;

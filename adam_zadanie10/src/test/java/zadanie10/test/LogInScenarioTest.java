@@ -3,19 +3,16 @@ package zadanie10.test;
 import org.testng.annotations.Test;
 import zadanie10.Data.User1Data;
 import zadanie10.assertion.AuthenticationPageAssertion;
-import zadanie10.assertion.LoginAssertion;
 import zadanie10.page.LoginPage;
-import zadanie10.scenario.LoginScenario;
+import zadanie10.scenario.LogInScenario;
 import zadanie10.test.common.AutomationPractiseTest;
-import zadanie10.page.common.MainPage;
-import zadanie10.page.component.HeaderComponent;
 
-public class LoginScenarioTest extends AutomationPractiseTest {
+public class LogInScenarioTest extends AutomationPractiseTest {
     private User1Data user = new User1Data();
 
     @Test
 
-    public void loginTest(){
+    public void failedLoginTest() {
         new LoginPage(driver)
                 .getHeader()
                 .clickSignIn()
@@ -23,9 +20,17 @@ public class LoginScenarioTest extends AutomationPractiseTest {
                 .enterPasswordToLogin("incorrectPassword")
                 .clickLogIn()
                 .check(new AuthenticationPageAssertion())
-                .verifyAutheticationTextError;
-                //.check(new LoginAssertion())
-                //.run(new LoginScenario("testinhome@gmail.com", "12345"))
-                //.clickLoginButton();
+                .verifyTextPresentInSignInErrorField("Authentication failed.");
+    }
+
+    @Test
+
+    public void LoginTest() {
+        new LoginPage(driver)
+                .run(new LogInScenario(user))
+                .getHeader()
+                .check(new LoginPageHeaderComponent())
+                .verifyLoggedUserName("");
+
     }
 }

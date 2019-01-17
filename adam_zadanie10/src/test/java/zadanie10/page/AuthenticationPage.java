@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import zadanie10.page.common.MainPage;
 
+import javax.swing.*;
+
 public class AuthenticationPage extends MainPage {
     @FindBy(id = "email")
     private WebElement emailInLoginField;
@@ -12,6 +14,8 @@ public class AuthenticationPage extends MainPage {
     private WebElement passwordInLoginField;
     @FindBy(id = "SubmitLogin")
     private WebElement logInButton;
+    @FindBy(xpath = "//p[contains(text(),'There is 1 error')]/../ol")
+    private WebElement signError;
 
     public AuthenticationPage(WebDriver driver) {
         super(driver);
@@ -30,5 +34,9 @@ public class AuthenticationPage extends MainPage {
     public AuthenticationPage clickLogIn() {
         logInButton.click();
         return this;
+    }
+
+    public WebElement getSignInErrorField() {
+        return signError;
     }
 }
