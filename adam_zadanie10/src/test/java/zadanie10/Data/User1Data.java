@@ -4,7 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.fluttercode.datafactory.impl.DataFactory;
 
 public class User1Data {
-    private String email = "132@wp.pl"; //default user
+    private String email = "adam.m@com.pl"; //default user
     private String firstName = "Jan";
     private String lastName = "Nowak";
     private String password = "jsrsS5knwidzC2i";

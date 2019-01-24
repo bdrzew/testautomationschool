@@ -8,9 +8,9 @@ import zadanie10.scenario.common.Scenario;
 public class LogInScenario implements Scenario<LoginPage, LoginPage> {
     //private String email;
     //private String password;
-    private User user;
+    private User1Data user;
 
-    public LogInScenario(String email, String password) {
+    public LogInScenario(User1Data user) {
         //this.email = email;
         //this.password = password;
         this.user = user;
@@ -21,10 +21,13 @@ public class LogInScenario implements Scenario<LoginPage, LoginPage> {
     public LoginPage run(LoginPage loginPage) {
         return loginPage
                 .getHeader()
-                .clickSignIn(User1Data.email)
-                .enterEmail()
-                .enerPassword()
-                .clickLogin();
+                .clickSignIn()
+                .enterEmail(user.getEmail())
+                .enterPasswordToLogin(user.getPassword())
+                .clickLogIn()
+                .getHeader()
+                .clickLoginPageLogo();
+
                 //.selectEmail(email)
                 //.selectPassword(password);
         //.clickLoginButton;

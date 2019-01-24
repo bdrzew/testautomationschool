@@ -39,4 +39,9 @@ public class AuthenticationPage extends MainPage {
     public WebElement getSignInErrorField() {
         return signError;
     }
+
+    public AuthenticationPage enterEmail(String email) {
+        emailInLoginField.sendKeys(email);
+        return this;
+    }
 }
