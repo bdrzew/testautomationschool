@@ -11,7 +11,7 @@ public class LoginPage extends Page {
 
     private HeaderComponent header;
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//button[@class='btn btn-large btn-primary login-button']")
     private WebElement submitButton;
     @FindBy (id = "user_email")
     private WebElement usernameField;
@@ -20,6 +20,7 @@ public class LoginPage extends Page {
 
     public LoginPage(WebDriver driver, String url) {
         super(driver);
+        driver.navigate().to(url);
         header = new HeaderComponent(driver);
     }
 

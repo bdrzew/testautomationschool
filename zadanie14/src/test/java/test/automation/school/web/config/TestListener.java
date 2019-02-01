@@ -8,7 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
-import test.automation.school.test.common.SeleniumTest;
+import test.automation.school.web.test.common.SeleniumTest;
+
 
 import java.io.File;
 import java.io.IOException;
