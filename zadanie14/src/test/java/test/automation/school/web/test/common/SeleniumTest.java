@@ -8,10 +8,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import test.automation.school.web.config.*;
 
+import java.util.ResourceBundle;
+
 
 public abstract class SeleniumTest {
     protected WebDriver driver;
     private WebDriverFactory webDriverFactory = getWebDriverFactory();
+
+    protected ResourceBundle config = ResourceBundle.getBundle("config");
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(ITestContext context) {

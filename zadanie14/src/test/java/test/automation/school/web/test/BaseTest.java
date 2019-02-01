@@ -6,11 +6,10 @@ import org.testng.annotations.Test;
 import test.automation.school.rest.model.Data;
 import test.automation.school.rest.model.Lead;
 import test.automation.school.rest.scenario.CreateLeadScenario;
+import test.automation.school.web.assertion.LeadDetailsPageAssertion;
 import test.automation.school.web.page.login.LoginPage;
 import test.automation.school.web.scenario.LoginScenario;
 import test.automation.school.web.test.common.SeleniumTest;
-
-import java.util.ResourceBundle;
 
 public class BaseTest extends SeleniumTest
 {
@@ -28,13 +27,13 @@ public class BaseTest extends SeleniumTest
 
     @Test()
     public void checkLeadTest() {
-        new LoginPage(driver, ResourceBundle.getBundle("config").getString("url"))
-                .run(new LoginScenario(ResourceBundle.getBundle("config").getString("username"),
-                        ResourceBundle.getBundle("config").getString("password")))
+        new LoginPage(driver, config.getString("url"))
+                .run(new LoginScenario(config.getString("username"),
+                        config.getString("password")))
                     .getHeaderComponent()
                     .clickLeads()
                     .clickLeadWithText(lead)
-                .check(new LeadsPageAssetion())
+                .check(new LeadDetailsPageAssertion())
                     .verifyLeadStatus("New");
     }
 }
