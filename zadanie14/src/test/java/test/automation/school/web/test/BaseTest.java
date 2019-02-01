@@ -30,7 +30,7 @@ public class BaseTest extends SeleniumTest
     public void checkLeadTest() {
         new LoginPage(driver, ResourceBundle.getBundle("config").getString("url"))
                 .run(new LoginScenario(ResourceBundle.getBundle("config").getString("username"),
-                        ResourceBundle.getBundle("config").getString("password")))
+                        ResourceBundle.getBundle("config").getString("password")));
                     .getHeaderComponent()
                     .clickLeads()
                     .clickLeadWithText(lead)
