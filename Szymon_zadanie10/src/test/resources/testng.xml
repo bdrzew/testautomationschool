@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test
+          name="D:/Programowanie/Testy automatyczne/szkolenie z Testow/Test Automation School/testautomationschool/Szymon_zadanie10/src/test/java/Szymon_zadanie10/test">
+        <classes>
+            <class name="Szymon_zadanie10.test.LoginTest">
+                <methods>
+                    <include name="LoginSuccessTest"/>
+                    <include name="LoginFailBecauseWrongPassword"/>
+                </methods>
+            </class>
+            <class name="Szymon_zadanie10.test.RegisterTest">
+                <methods>
+                    <include name="registerUserSuccessfullyTest"/>
+                    <include name="registerAlreadyRegisteredUserTest"/>
+                </methods>
+            </class>
+            <class name="Szymon_zadanie10.test.ShoppingTest">
+                <methods>
+                    <include name="addItemsToCartAndValidateQuantityTest"/>
+                    <include name="addItemsToCartAndValidateCartItemsAndTotalPriceTest"/>
+                    <include name="addItemsAndMultiplyAndValidate"/>
+                </methods>
+            </class>
+            <class name="Szymon_zadanie10.test.WebContentTest">
+                <methods>
+                    <include name="mainCategoriesInHeaderCheckTest"/>
+                    <include name="dressesCategoriesInHeaderCheckTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
