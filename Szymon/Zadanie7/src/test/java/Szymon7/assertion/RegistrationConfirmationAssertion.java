@@ -1,6 +1,7 @@
 package Szymon7.assertion;
 
-import Szymon7.User;
+import Szymon7.model.User;
+import Szymon7.assertion.common.Assertion;
 import Szymon7.page.RegistrationConfirmationPage;
 
 import static org.testng.Assert.assertEquals;

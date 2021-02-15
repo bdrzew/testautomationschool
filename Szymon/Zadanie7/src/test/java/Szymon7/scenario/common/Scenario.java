@@ -1,5 +1,6 @@
 package Szymon7.scenario.common;
 
+import Szymon7.model.User;
 import Szymon7.page.common.Page;
 
 /**
